@@ -20,5 +20,8 @@ from ODBS.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index,name="index"),
+    path('registration/', registration,name="registration"),
+    path('patlogin/', patlogin,name="patlogin"),
+    path('patienthome/', patienthome,name="patienthome"),
 
 ]

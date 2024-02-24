@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Emoployee Login Page</title>
+ 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <!--Stylesheet-->
+    <style media="screen">
+      *,
+*:before,
+*:after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background: url('/images/employee-engagement-strategies-cover.jpg')no-repeat;
+    background-position-x: center;
+    background-size: cover;
+}
+.background{
+    width: 600px;
+    height: 200px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+}
+form{
+    height: 550px;
+    width: 530px;
+    background-color: rgba(177, 112, 185, 0.13);
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    padding: 50px 35px;
+}
+form *{
+    font-family: 'Poppins',sans-serif;
+    color: rgb(34, 150, 34);
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+form h3{
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
+}
+
+label{
+    display: block;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 500;
+}
+input{
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: rgba(211, 24, 24, 0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+}
+::placeholder{
+    color: #030002;
+}
+button{
+    margin-top: 10px;
+    width: 100%;
+    background-color : rgb(34, 150, 34);
+    color: white;
+    padding: 10px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}
+    </style>
+    <script>
+        function f1(){
+            document.getElementById("username").value="";
+            document.getElementById("password").value="";
+
+
+        }
+    </script>
+</head>
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <h3>Employee Login</h3>          
+
+        <label for="username">Username</label>
+        <input type="email" name="email" placeholder="Email" pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$" id="username">
+
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="Password" id="password">
+    
+        <button>Log In</button>
+        <button type="button" class="cancelbtn" onclick="f1()">Cancel</button>
+        <a href="{% url 'index'%}">Go back to Home</a></span>
+        
+    </form>
+    {% if error == "no"%}
+    <script>
+        alert('login successfull');
+        window.location=('{% url "patienthome"%}');
+      </script>
+  {% endif %}
+  
+  {% if error == "yes" %}
+  <script>
+    alert('Invalid login credentials');
+
+  </script>
+  {% endif %}
+</body>
+</html>
