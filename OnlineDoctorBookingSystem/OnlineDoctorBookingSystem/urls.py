@@ -22,6 +22,8 @@ urlpatterns = [
     path('', index,name="index"),
     path('registration/', registration,name="registration"),
     path('patlogin/', patlogin,name="patlogin"),
+    path('adminlogin/', adminlogin,name="adminlogin"),
+    path('adminhome/', adminhome,name="adminhome"),
     path('patienthome/', patienthome,name="patienthome"),
 
 ]

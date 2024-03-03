@@ -18,4 +18,11 @@ class Patient(models.Model):
     contactno=models.CharField(max_length=10,null=True)
     bloodgroup=models.CharField(max_length=50,null=True)
     docid=models.ForeignKey(Doctor,on_delete=models.CASCADE,null=True)
-    
+class appointment(models.Model):
+    appid=models.BigAutoField(primary_key=True)
+    patid=models.ForeignKey(Patient,on_delete=models.CASCADE,null=True)
+    docid=models.ForeignKey(Doctor,on_delete=models.CASCADE,null=True)
+    date=models.DateField(max_length=50,null=True)
+    starttime=models.TimeField(max_length=50,null=True)
+
+

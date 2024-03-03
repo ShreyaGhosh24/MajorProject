@@ -1,0 +1,106 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/admin_approval.css">
+    <title>Admin Panel</title>
+</head>
+
+<body>
+    <div class="side-menu">
+        <div class="Everything needs admin approval-name">
+            <h1>Everything needs admin approval</h1>
+        </div>
+        <ul>
+            <li><img src="dashboard (2).png" alt="">&nbsp; <span></span> </li>
+            <li><img src="All doctor.png" alt="">&nbsp;<span>All doctor</span> </li>
+            <li><img src="Add doctor.png" alt="">&nbsp;<span>Add doctor</span> </li>
+            <li><img src="Logout.png" alt="">&nbsp;<span>Logout</span> </li>
+            
+        </ul>
+    </div>
+    <div class="container">
+        <div class="header">
+            <div class="nav">
+                <div class="search">
+                    <input type="text" placeholder="Search..">
+                    <button type="submit"><img src="search.png" alt=""></button>
+                </div>
+                <div class="user">
+                    
+                    
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="cards">
+                <div class="card">
+                    <div class="box">
+                        <h1> Doctors </h1>
+                        <img src="/static/image/Doctor.jpeg" width="165" height="165">
+                    </div>
+                    
+                </div>
+                <div class="card">
+                    <div class="box">
+                        <h1>Total appointments</h1>
+                        
+                    </div>
+                    
+                </div>
+                <div class="card">
+                    <div class="box">
+                        <h1>Patients</h1>
+                        <img src="/static/image/Patient.jpeg" width="165" height="165">
+                        
+                    </div>
+                    
+                </div>
+                
+            </div>
+            <div class="content-2">
+                <div class="Appointments">
+                    <div class="title">
+                        <h2>All appointments</h2>
+                        <a href="#" class="btn">View All</a>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="color:#2aafe8">Appointment Id    </th>
+                                <th style="color:#2aafe8">Patient Id    </th>
+                                <th style="color:#2aafe8">Doctor Id    </th>
+                                <th style="color:#2aafe8">Date    </th>
+                                <th style="color:#2aafe8">Time    </th>
+                                <th style="color:#2aafe8">Option    </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in app%}
+                            <tr>
+                                <td>{{i.appid}}</td>
+                                <td>{{i.patid}}</td>
+                                <td>{{i.docid}}</td>
+                                <td>{{i.date}}</td>
+                                <td>{{i.starttime}}</td>
+                                <td><a href="#" class="btn">Accept</a></td>
+                                <td><a href="#" class="btn">Reject</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                       
+                        
+                        
+                    </table>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

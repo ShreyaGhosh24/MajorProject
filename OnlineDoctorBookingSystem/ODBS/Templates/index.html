@@ -1,1 +1,259 @@
-<h1>Home page</h1>
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <style>
+        :root {
+        --primary-color: #28bf96;
+        --primary-color-dark: #209677;
+
+        --text-dark: #111827;
+        --text-light: #6b7280;
+        --white: #ffffff;
+        }
+
+        * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        }
+
+        .btn {
+        padding: 1rem 2rem;
+        outline: none;
+        border: none;
+        font-size: 1rem;
+        color: var(--white);
+        background-color: var(--primary-color);
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+        }
+
+        .btn:hover {
+        background-color: var(--primary-color-dark);
+        }
+
+        body {
+        font-family: "Roboto", sans-serif;
+        }
+
+        .container {
+        max-width: 1200px;
+        margin: auto;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        }
+
+        nav {
+        padding: 2rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        }
+
+        .nav__logo {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        }
+
+        .nav__links {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        }
+
+        .link a {
+        text-decoration: none;
+        color: var(--text-light);
+        cursor: pointer;
+        transition: 0.3s;
+        }
+
+        .link a:hover {
+        color: var(--primary-color);
+        }
+
+        .header {
+        padding: 0 1rem;
+        flex: 1;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        align-items: center;
+        }
+
+        .content h1 {
+        margin-bottom: 1rem;
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        }
+
+        .content h1 span {
+        font-weight: 400;
+        }
+
+        .content p {
+        margin-bottom: 2rem;
+        color: var(--text-light);
+        line-height: 1.75rem;
+        }
+
+        .image {
+        position: relative;
+        text-align: center;
+        isolation: isolate;
+        }
+
+        .image__bg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 450px;
+        width: 450px;
+        background-color: var(--primary-color);
+        border-radius: 100%;
+        z-index: -1;
+        }
+
+        .image img {
+        width: 100%;
+        max-width: 475px;
+        }
+
+        .image__content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        text-align: left;
+        background-color: var(--white);
+        border-radius: 5px;
+        box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .image__content__1 {
+        transform: translate(calc(-50% - 12rem), calc(-50% - 8rem));
+        }
+
+        .image__content__1 span {
+        padding: 10px 12px;
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        background-color: #defcf4;
+        border-radius: 100%;
+        }
+
+        .image__content__1 h4 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        }
+
+        .image__content__1 p {
+        color: var(--text-light);
+        }
+
+        .image__content__2 {
+        transform: translate(calc(-50% + 8rem), calc(-50% + 10rem));
+        }
+
+        .image__content__2 ul {
+        list-style: none;
+        display: grid;
+        gap: 1rem;
+        }
+
+        .image__content__2 li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+        color: var(--text-light);
+        }
+
+        .image__content__2 span {
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        }
+
+        @media (width < 900px) {
+        .nav__links {
+            display: none;
+        }
+
+        .header {
+            padding: 1rem;
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        .content {
+            text-align: center;
+        }
+
+        .image {
+            grid-area: 1/1/2/2;
+        }
+        }
+
+    </style>
+    <title>ONLINE DOCTOR APPOINTMENT BOOKING SYSTEM</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <div class="nav__logo"><h1>Online Doctor Appointment Booking System|ODABS</h1></div>
+        <ul class="nav__links">
+          <li class="link"><a href="#">Home</a></li>
+          <li class="link"><a href="#">Departments</a></li>
+          <li class="link"><a href="#">Doctor</a></li>
+          <li class="link"><a href="#">Patient</a></li>
+          <li class="link"><a href="/adminlogin">Admin</a></li>
+        </ul>
+        <button class="btn">Make an Appointment</button>
+      </nav>
+      <header class="header">
+        <div class="content">
+          <h2><span>Get Quick</span><br />Medical Services</h2>
+          <p>
+            In today's fast-paced world, access to prompt and efficient medical
+            services is of paramount importance. When faced with a medical
+            emergency or seeking immediate medical attention, the ability to
+            receive quick medical services can significantly impact the outcome
+            of a situation.
+          </p>
+          <h2><span>24*7 booking:</span><br />Anytime Anywhere</h2>
+          <p>
+            Online Doctor Appointment Booking system allows patients to book an appointment from the comfort of their homes, using their computer, laptop or mobile, and at any time.
+          </p>
+          <h2>Contact Us</h2>
+          <p>
+            ABC CLINIC <br>
+            XYZ Street<br>
+            UVW District<br>
+            Phone:+91 123456789<br>
+            Email: mail@gmail.com<br>
+            Website:www.abc.com<br>        
+          </p>
+        </div>
+        <div class="image">
+          <span class="image__bg"></span>
+          <img src="/static/image/homeimage.png" alt="header image" />
+      </header>
+    </div>
+  </body>
+</html>

@@ -39,5 +39,26 @@ def patlogin(request):
             error="yes"
 
     return render(request,"login.html",locals())
+def adminlogin(request):
+    error=""
+    if request.method =="POST":
+        u=request.POST['username']
+        p=request.POST['password']
+        
+        user=authenticate(request,username=u,password=p)
+        #print(user)
+        if user:
+            if user.is_staff:
+                login(request,user)
+                error="no"
+            else:
+                error="yes"
+        else:
+            error="yes"
+    return render(request,'adminlogin.html',locals())
 def patienthome(request):
     return render(request,"patienthome.html")
+def adminhome(request):
+    app=appointment.objects.all()
+    return render(request,"adminhome.html",locals())
+
