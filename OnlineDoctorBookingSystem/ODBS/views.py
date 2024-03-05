@@ -56,9 +56,32 @@ def adminlogin(request):
         else:
             error="yes"
     return render(request,'adminlogin.html',locals())
+def adminlogout(request):
+    logout(request)
+    return redirect('adminlogin')
 def patienthome(request):
     return render(request,"patienthome.html")
 def adminhome(request):
     app=appointment.objects.all()
+    pat=Patient.objects.all()
+    doc=Doctor.objects.all()
+    doccount=doc.count()
+    patcount=pat.count()
+    appointmentcount=appointment.objects.all().count()
     return render(request,"adminhome.html",locals())
+def acceptappointment(request,appid):
+    error=""
+    if not request.user.is_authenticated:
+        return redirect('adminlogin')
+    u=appointment.objects.get(appid=appid)
+    u.status="Accepted"
+    try:
+        u.save()
+        error="no"
+    except:
+        error="yes"
+    return render(request,"adminhome.html",locals())
+
+
+
 

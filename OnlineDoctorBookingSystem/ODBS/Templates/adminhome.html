@@ -19,7 +19,7 @@
             <li><img src="dashboard (2).png" alt="">&nbsp; <span></span> </li>
             <li><img src="All doctor.png" alt="">&nbsp;<span>All doctor</span> </li>
             <li><img src="Add doctor.png" alt="">&nbsp;<span>Add doctor</span> </li>
-            <li><img src="Logout.png" alt="">&nbsp;<span>Logout</span> </li>
+            <li><img src="Logout.png" alt="">&nbsp;<span><a href="/adminlogout" class="logout">Logout</a></span> </li>
             
         </ul>
     </div>
@@ -40,21 +40,21 @@
             <div class="cards">
                 <div class="card">
                     <div class="box">
-                        <h1> Doctors </h1>
+                        <h1> Doctors:{{doccount}} </h1>
                         <img src="/static/image/Doctor.jpeg" width="165" height="165">
                     </div>
                     
                 </div>
                 <div class="card">
                     <div class="box">
-                        <h1>Total appointments</h1>
+                        <h1>Total appointments:{{appointmentcount}}</h1>
                         
                     </div>
                     
                 </div>
                 <div class="card">
                     <div class="box">
-                        <h1>Patients</h1>
+                        <h1>Patients:{{patcount}}</h1>
                         <img src="/static/image/Patient.jpeg" width="165" height="165">
                         
                     </div>
@@ -76,6 +76,7 @@
                                 <th style="color:#2aafe8">Doctor Id    </th>
                                 <th style="color:#2aafe8">Date    </th>
                                 <th style="color:#2aafe8">Time    </th>
+                                <th style="color:#2aafe8">Status    </th>
                                 <th style="color:#2aafe8">Option    </th>
                             </tr>
                         </thead>
@@ -87,7 +88,8 @@
                                 <td>{{i.docid}}</td>
                                 <td>{{i.date}}</td>
                                 <td>{{i.starttime}}</td>
-                                <td><a href="#" class="btn">Accept</a></td>
+                                <td>{{i.status}}</td>
+                                <td><a href="/acceptappointment/{{i.appid}}" class="btn">Accept</a></td>
                                 <td><a href="#" class="btn">Reject</a></td>
                             </tr>
                             {% endfor %}
@@ -96,6 +98,19 @@
                         
                         
                     </table>
+        {% if error == "no" %}
+        <script>
+            alert('Appointment accepted');
+            window.location=('{% url "adminhome"%}');
+            
+        </script>
+    {% endif %}
+    {% if error == "yes" %}
+        <script>
+            alert('Something went wrong. Try again....');
+
+        </script>
+    {% endif %}
                 </div>
                 
             </div>

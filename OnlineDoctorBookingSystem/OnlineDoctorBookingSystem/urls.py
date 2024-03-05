@@ -23,7 +23,10 @@ urlpatterns = [
     path('registration/', registration,name="registration"),
     path('patlogin/', patlogin,name="patlogin"),
     path('adminlogin/', adminlogin,name="adminlogin"),
+    path('adminlogout/', adminlogout,name="adminlogout"),
     path('adminhome/', adminhome,name="adminhome"),
     path('patienthome/', patienthome,name="patienthome"),
+    path('acceptappointment/<int:appid>', acceptappointment,name="acceptappointment"),
+
 
 ]
