@@ -9,6 +9,13 @@ class Doctor(models.Model):
     contactno=models.CharField(max_length=50,null=True)
     qualification=models.CharField(max_length=50,null=True)
     specialist=models.CharField(max_length=50,null=True)
+    #day1=models.CharField(max_length=10,null=True)
+    #day2=models.CharField(max_length=10,null=True)
+    #day3=models.CharField(max_length=10,null=True)
+    #time1=models.CharField(max_length=10,null=True)
+    #time2=models.CharField(max_length=10,null=True)
+    #time3=models.CharField(max_length=10,null=True)
+
     def __str__(self):
         return str(self.pk)
 class Patient(models.Model):

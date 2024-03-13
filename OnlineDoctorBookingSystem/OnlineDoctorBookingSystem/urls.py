@@ -27,6 +27,9 @@ urlpatterns = [
     path('adminhome/', adminhome,name="adminhome"),
     path('patienthome/', patienthome,name="patienthome"),
     path('acceptappointment/<int:appid>', acceptappointment,name="acceptappointment"),
+    path('rejectappointment/<int:appid>', rejectappointment,name="rejectappointment"),
+    path('commonregistration/', commonregistration,name="commonregistration"),
+    #path('makeappointmenthome/', commonregistration,name="makeappointment"),
 
 
 ]

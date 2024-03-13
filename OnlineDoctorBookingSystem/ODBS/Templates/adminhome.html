@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/admin_approval.css">
     <title>Admin Panel</title>
+    
 </head>
 
 <body>
@@ -68,7 +69,7 @@
                         <h2>All appointments</h2>
                         <a href="#" class="btn">View All</a>
                     </div>
-                    <table>
+                    <table id="example">
                         <thead>
                             <tr>
                                 <th style="color:#2aafe8">Appointment Id    </th>
@@ -90,7 +91,7 @@
                                 <td>{{i.starttime}}</td>
                                 <td>{{i.status}}</td>
                                 <td><a href="/acceptappointment/{{i.appid}}" class="btn">Accept</a></td>
-                                <td><a href="#" class="btn">Reject</a></td>
+                                <td><a href="/rejectappointment/{{i.appid}}" class="btn">Reject</a></td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -98,9 +99,16 @@
                         
                         
                     </table>
-        {% if error == "no" %}
+        {% if error == "no" and u.status == "Accepted" %}
         <script>
             alert('Appointment accepted');
+            window.location=('{% url "adminhome"%}');
+            
+        </script>
+    {% endif %}
+    {% if error == "no" and u.status == "Rejected" %}
+        <script>
+            alert('Appointment Rejected');
             window.location=('{% url "adminhome"%}');
             
         </script>

@@ -81,7 +81,51 @@ def acceptappointment(request,appid):
     except:
         error="yes"
     return render(request,"adminhome.html",locals())
+def rejectappointment(request,appid):
+    error=""
+    if not request.user.is_authenticated:
+        return redirect('adminlogin')
+    u=appointment.objects.get(appid=appid)
+    u.status="Rejected"
+    try:
+        u.save()
+        error="no"
+    except:
+        error="yes"
+    return render(request,"adminhome.html",locals())
+def commonregistration(request):
+    errorinsignup=""
+    errorinlogin=""
+    if request.method=='POST':
+        #choice=request.POST['slide']
+        #print(choice)
+        if "signup" in request.POST:
+            uname=request.POST['emailid']
+            pwd=request.POST['password']
+            #print(uname)
+            try:
+                user=User.objects.create_user(username=uname,password=pwd)
+                Patient.objects.create(user=user)
+                errorinsignup="no"
+                    #return render(request,"commonsignup.html")
+            except:
+                errorinsignup="yes"
+        if "login" in request.POST:
+            u=request.POST['email']
+            p=request.POST['password']
+            user=authenticate(request,username=u,password=p)
+            #print(user)
+            if user!=None:
+                pat=Patient.objects.get(user=user)
+                errorinlogin="no"
+                #return render(request,"patienthome.html")
+            else:
+                errorinlogin="yes"
+            
 
+
+
+    return render(request,"commonsignup.html",locals())
 
 
 
