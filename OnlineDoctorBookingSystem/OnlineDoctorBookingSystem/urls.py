@@ -29,6 +29,8 @@ urlpatterns = [
     path('acceptappointment/<int:appid>', acceptappointment,name="acceptappointment"),
     path('rejectappointment/<int:appid>', rejectappointment,name="rejectappointment"),
     path('commonregistration/', commonregistration,name="commonregistration"),
+    path('bookappointment/', bookappointment,name="bookappointment"),
+    path('bookdoc/<int:docid>', bookdoc,name="bookdoc"),
     #path('makeappointmenthome/', commonregistration,name="makeappointment"),
 
 

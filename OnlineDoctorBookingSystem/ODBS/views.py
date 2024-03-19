@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import render ,redirect
 from .models import *
 from django.contrib.auth import authenticate, login,logout
+from datetime import *
 
 # Create your views here.
 def index(request):
@@ -60,7 +61,13 @@ def adminlogout(request):
     logout(request)
     return redirect('adminlogin')
 def patienthome(request):
-    return render(request,"patienthome.html")
+    if not request.user.is_authenticated:
+        return redirect('commonregistration')
+    user=request.user
+    print(user)
+    user=request.user
+    pat=Patient.objects.get(user=user)
+    return render(request,"patienthome.html",locals())
 def adminhome(request):
     app=appointment.objects.all()
     pat=Patient.objects.all()
@@ -113,19 +120,78 @@ def commonregistration(request):
         if "login" in request.POST:
             u=request.POST['email']
             p=request.POST['password']
-            user=authenticate(request,username=u,password=p)
-            #print(user)
-            if user!=None:
-                pat=Patient.objects.get(user=user)
+            u=authenticate(request,username=u,password=p)
+            #print(u)
+            if u!=None:
+                pat=Patient.objects.get(user=u)
+                login(request,u)
                 errorinlogin="no"
                 #return render(request,"patienthome.html")
             else:
                 errorinlogin="yes"
-            
-
-
 
     return render(request,"commonsignup.html",locals())
+def bookappointment(request):
+    listofdoctors=Doctor.objects.all()
+    return render(request,"bookappointment.html",locals())
+def bookdoc(request,docid):
+    p=request.user
+    dayofweek={0:"monday",1:"tuesday",2:"wednesday",3:"thursday",4:"friday",5:"saturday",6:"sunday"}
+    doc=Doctor.objects.get(docid=docid)
+    patientobj=(Patient.objects.get(user=p))
+    p=request.user
+    
+    slots=[]
+    msg=""
+    if request.method =="POST":
+        dr=request.POST['reqdate']
+        tr=request.POST['reqtime']
+        dro=datetime.strptime(dr, '%Y-%m-%d').date()
+        tro=datetime.strptime(tr, '%H:%M')
+        requestedweekday=dayofweek[dro.weekday()]
+        dt=doc.day1.lower()
+        #print(type(dt))
+        #print(requestedweekday)
+        if datetime.strptime(dr, '%Y-%m-%d')<datetime.now():
+            msg="Please select a future date and time"
+        elif requestedweekday==doc.day1.lower():
+            t1ofdoc=(datetime.strptime(doc.time1, '%H:%M'))
+            t1endofdoc=datetime.strptime((t1ofdoc+ timedelta(hours=2)).strftime('%H:%M'),'%H:%M')
+            #print(t1ofdoc)
+            #print(t1endofdoc)
+            #print(type(t1ofdoc),type(t1endofdoc))
+            #t=t1ofdoc
+            #for i in range(7):
+                #t=t+timedelta(minutes=30)
+                #print(type(t))
+                #slots.append(t.strftime('%H:%M'))
+            #print(slots)
+            if tro>t1ofdoc and tro<t1endofdoc:
+                objexist=appointment.objects.filter(docid=docid,date=dr,starttime=tr)
+                if not objexist:
+                    #print("appointment can be scheduled")
+                    try:
+                        appobject=appointment.objects.create(docid=doc,patid=patientobj,date=dr,starttime=tr,status="Accepted")
+                        appobject.save()
+                        msg="Appointment successful!"
+                    except:
+                        msg="something went wrong"
+                        
+
+                else:
+                    msg="Already has an appointment"
+            else:
+                 msg="Please select a right time"
+
+        elif requestedweekday==doc.day2.lower():
+            print("yes d2")
+        elif requestedweekday==doc.day2.lower():
+            print("yes d3")
+        else:
+            msg="Please select a valid date or a day matched with doctor's day"
+        
+        print(msg)
+    return render(request,"bookingpage.html",locals())
 
 
 

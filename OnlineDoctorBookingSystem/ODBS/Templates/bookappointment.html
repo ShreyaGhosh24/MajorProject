@@ -1,0 +1,26 @@
+<h1>bookappointment</h1>
+<table id="example">
+    <thead>
+        <tr>
+            <th style="color:#2aafe8">Doc id </th>
+            <th style="color:#2aafe8">Qualification    </th>
+            <th style="color:#2aafe8">dept    </th>
+            
+            <th style="color:#2aafe8">Option    </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in listofdoctors%}
+        <tr>
+            <td>{{i.docid}}</td>
+            <td>{{i.qualification}}</td>
+            <td>{{i.specialist}}</td>
+            
+            <td><a href="/bookdoc/{{i.docid}}" class="btn">Book now</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+   
+    
+    
+</table>

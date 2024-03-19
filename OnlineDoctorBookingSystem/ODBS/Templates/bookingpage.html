@@ -1,0 +1,50 @@
+<h1>Booking page</h1>
+<h1>doctor name={{doc.docid}}</h1>
+
+
+<form method="post">
+    {% csrf_token %}
+    <label for="reqdate">Select a date:</label>
+    <input type="date" id="reqdate" name="reqdate">
+    <label for="appt">Select a time:</label>
+    <input type="time" id="appt" name="reqtime">
+    
+
+    <input type="submit" name="reqbook" value="Req a booking">
+
+</form>
+{% if msg == "Appointment successful!"%}
+    <script>
+        alert('Appointment successfull');
+        window.location=('{% url "patienthome"%}');
+      </script>
+  {% endif %}
+  {% if msg == "Already has an appointment"%}
+    <script>
+        alert('Already has an appointment');
+        window.location=('{% url "patienthome"%}');
+      </script>
+  {% endif %}
+  {% if msg == "Please select a right time"%}
+    <script>
+        alert('Please select a right time');
+        window.location=('{% url "patienthome"%}');
+      </script>
+  {% endif %}
+  {% if msg == "Please select a valid date or a day matched with doctor's day"%}
+    <script>
+        alert('Please select a valid date or a day matched with doctors day');
+        window.location=('{% url "patienthome"%}');
+      </script>
+  {% endif %}
+  {% if msg == "Please select a future date and time"%}
+    <script>
+        alert('Please select a future date and time');
+        window.location=('{% url "patienthome"%}');
+      </script>
+  {% endif %}
+
+    
+ 
+  
+
