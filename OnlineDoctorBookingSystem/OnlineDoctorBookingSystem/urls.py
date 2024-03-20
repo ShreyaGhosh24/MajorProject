@@ -31,6 +31,7 @@ urlpatterns = [
     path('commonregistration/', commonregistration,name="commonregistration"),
     path('bookappointment/', bookappointment,name="bookappointment"),
     path('bookdoc/<int:docid>', bookdoc,name="bookdoc"),
+    path('adddoctor/', adddoctor,name="adddoctor"),
     #path('makeappointmenthome/', commonregistration,name="makeappointment"),
 
 

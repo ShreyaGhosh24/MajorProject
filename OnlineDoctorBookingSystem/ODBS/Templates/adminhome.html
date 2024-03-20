@@ -1,4 +1,4 @@
-{%load static%}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,100 +6,150 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/admin_approval.css">
-    <title>Admin Panel</title>
-    
+    <title>Admin Dashboard</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="/static/css/admin_approval2.css">
 </head>
 
 <body>
-    <div class="side-menu">
-        <div class="Everything needs admin approval-name">
-            <h1>Everything needs admin approval</h1>
-        </div>
-        <ul>
-            <li><img src="dashboard (2).png" alt="">&nbsp; <span></span> </li>
-            <li><img src="All doctor.png" alt="">&nbsp;<span>All doctor</span> </li>
-            <li><img src="Add doctor.png" alt="">&nbsp;<span>Add doctor</span> </li>
-            <li><img src="Logout.png" alt="">&nbsp;<span><a href="/adminlogout" class="logout">Logout</a></span> </li>
-            
-        </ul>
-    </div>
+    <!-- =============== Navigation ================ -->
     <div class="container">
-        <div class="header">
-            <div class="nav">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        
+                        <span class="title">Everything needs admin approval</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        
+                        <span class="title">All doctors</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/adddoctor">
+                        
+                        <span class="title">Add doctors</span>
+                    </a>
+                </li>
+
+                
+
+                
+
+                
+
+                
+
+                <li>
+                    <a href="/adminlogout">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title"> Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- ========================= Main ==================== -->
+        <div class="main">
+            <div class="topbar">
+                
+
                 <div class="search">
-                    <input type="text" placeholder="Search..">
-                    <button type="submit"><img src="search.png" alt=""></button>
+                    <label>
+                        <input type="text" placeholder="Search here">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </label>
                 </div>
+
                 <div class="user">
-                    
-                    
+                    <img src="assets/imgs/customer01.jpg" alt="">
                 </div>
             </div>
-        </div>
-        <div class="content">
-            <div class="cards">
+
+            <!-- ======================= Cards ================== -->
+            <div class="cardBox">
                 <div class="card">
-                    <div class="box">
-                        <h1> Doctors:{{doccount}} </h1>
-                        <img src="/static/image/Doctor.jpeg" width="165" height="165">
+                    <div>
+                        <div class="numbers"></div>
+                        <div class="cardName">Doctors: {{doccount}}</div>
                     </div>
+
                     
                 </div>
+
                 <div class="card">
-                    <div class="box">
-                        <h1>Total appointments:{{appointmentcount}}</h1>
-                        
+                    <div>
+                        <div class="numbers"></div>
+                        <div class="cardName">Patients : {{patcount}}</div>
                     </div>
+
                     
                 </div>
+
                 <div class="card">
-                    <div class="box">
-                        <h1>Patients:{{patcount}}</h1>
-                        <img src="/static/image/Patient.jpeg" width="165" height="165">
-                        
+                    <div>
+                        <div class="numbers"></div>
+                        <div class="cardName">Total appointments</div>
                     </div>
+
                     
                 </div>
+
+                
                 
             </div>
-            <div class="content-2">
-                <div class="Appointments">
-                    <div class="title">
+
+            <!-- ================ Order Details List ================= -->
+            <div class="details">
+                <div class="recentOrders">
+                    <div class="cardHeader">
                         <h2>All appointments</h2>
                         <a href="#" class="btn">View All</a>
                     </div>
-                    <table id="example">
+
+                    
+
+                        
+                    <table>
                         <thead>
-                            <tr>
-                                <th style="color:#2aafe8">Appointment Id    </th>
-                                <th style="color:#2aafe8">Patient Id    </th>
-                                <th style="color:#2aafe8">Doctor Id    </th>
-                                <th style="color:#2aafe8">Date    </th>
-                                <th style="color:#2aafe8">Time    </th>
-                                <th style="color:#2aafe8">Status    </th>
-                                <th style="color:#2aafe8">Option    </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for i in app%}
-                            <tr>
-                                <td>{{i.appid}}</td>
-                                <td>{{i.patid}}</td>
-                                <td>{{i.docid}}</td>
-                                <td>{{i.date}}</td>
-                                <td>{{i.starttime}}</td>
-                                <td>{{i.status}}</td>
-                                <td><a href="/acceptappointment/{{i.appid}}" class="btn">Accept</a></td>
-                                <td><a href="/rejectappointment/{{i.appid}}" class="btn">Reject</a></td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                       
+                                <tr>
+                                    <td>Appointment Id</td>
+                                    <td>Patient Id</td>
+                                    <td>Doctor Id</td>
+                                    <td>Date</td>
+                                    <td>Time</td>
+                                    <td>Status</td>
+                                    <td>Option</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in app%}
+                                <tr>
+                                    <td>{{i.appid}}</td>
+                                    <td>{{i.patid}}</td>
+                                    <td>{{i.docid}}</td>
+                                    <td>{{i.date}}</td>
+                                    <td>{{i.starttime}}</td>
+                                    <td>{{i.status}}</td>
+                                    <td style="color:#2aafe8"><a href="/acceptappointment/{{i.appid}}" class="btn">Accept</a></td>
+                                    <td style="color:#2aafe8"><a href="/rejectappointment/{{i.appid}}" class="btn">Reject</a></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                           
+                        
+
                         
                         
-                    </table>
-        {% if error == "no" and u.status == "Accepted" %}
+                    </table>  
+                    {% if error == "no" and u.status == "Accepted" %}
         <script>
             alert('Appointment accepted');
             window.location=('{% url "adminhome"%}');
@@ -119,11 +169,21 @@
 
         </script>
     {% endif %}
+                            
                 </div>
+
                 
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- =========== Scripts =========  -->
+    <script src="assets/js/main.js"></script>
+
+    <!-- ====== ionicons ======= -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>

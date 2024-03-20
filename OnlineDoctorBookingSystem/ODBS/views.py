@@ -140,8 +140,57 @@ def bookdoc(request,docid):
     doc=Doctor.objects.get(docid=docid)
     patientobj=(Patient.objects.get(user=p))
     p=request.user
-    
+    d={}
     slots=[]
+    slot1=[]
+    slot2=[]
+    slot3=[]
+    appday=[]
+    appday.append(doc.day1)
+    t1ofdoc=(datetime.strptime(doc.time1, '%H:%M'))
+    t1endofdoc=datetime.strptime((t1ofdoc+ timedelta(hours=2)).strftime('%H:%M'),'%H:%M')
+            #print(t1ofdoc)
+            #print(t1endofdoc)
+            #print(type(t1ofdoc),type(t1endofdoc))
+    t=t1ofdoc
+    slot1.append(t.strftime('%H:%M'))
+    for i in range(7):
+        t=t+timedelta(minutes=15)
+        slot1.append(t.strftime('%H:%M'))
+    d[doc.day1]=slot1
+    if doc.day2:
+        if doc.time2:
+            t2ofdoc=(datetime.strptime(doc.time2, '%H:%M'))
+            t2endofdoc=datetime.strptime((t2ofdoc+ timedelta(hours=2)).strftime('%H:%M'),'%H:%M')
+            #print(t1ofdoc)
+            #print(t1endofdoc)
+            #print(type(t1ofdoc),type(t1endofdoc))
+            t=t2ofdoc
+            slot2.append(t.strftime('%H:%M'))
+            for i in range(7):
+                t=t+timedelta(minutes=15)
+                slot2.append(t.strftime('%H:%M'))
+
+            appday.append(doc.day2)
+            d[doc.day2]=slot2
+    if doc.day3:
+        if doc.time3:
+            t3ofdoc=(datetime.strptime(doc.time3, '%H:%M'))
+            t3endofdoc=datetime.strptime((t3ofdoc+ timedelta(hours=2)).strftime('%H:%M'),'%H:%M')
+            #print(t1ofdoc)
+            #print(t1endofdoc)
+            #print(type(t1ofdoc),type(t1endofdoc))
+            t=t3ofdoc
+            slot3.append(t.strftime('%H:%M'))
+            for i in range(7):
+                t=t+timedelta(minutes=15)
+                slot3.append(t.strftime('%H:%M'))
+
+            appday.append(doc.day3)
+            d[doc.day3]=slot3
+
+    
+    print(d)
     msg=""
     if request.method =="POST":
         dr=request.POST['reqdate']
@@ -160,38 +209,133 @@ def bookdoc(request,docid):
             #print(t1ofdoc)
             #print(t1endofdoc)
             #print(type(t1ofdoc),type(t1endofdoc))
-            #t=t1ofdoc
-            #for i in range(7):
-                #t=t+timedelta(minutes=30)
-                #print(type(t))
-                #slots.append(t.strftime('%H:%M'))
-            #print(slots)
+            t=t1ofdoc
+            slot1.append(t.strftime('%H:%M'))
+            for i in range(7):
+                t=t+timedelta(minutes=15)
+                slot1.append(t.strftime('%H:%M'))
+            
             if tro>t1ofdoc and tro<t1endofdoc:
-                objexist=appointment.objects.filter(docid=docid,date=dr,starttime=tr)
-                if not objexist:
+                print(tr,slot1)
+                if tr in slot1:
+                    objexist=appointment.objects.filter(docid=docid,date=dr,starttime=tr)
+                    if not objexist:
                     #print("appointment can be scheduled")
-                    try:
-                        appobject=appointment.objects.create(docid=doc,patid=patientobj,date=dr,starttime=tr,status="Accepted")
-                        appobject.save()
-                        msg="Appointment successful!"
-                    except:
-                        msg="something went wrong"
+                        try:
+                            appobject=appointment.objects.create(docid=doc,patid=patientobj,date=dr,starttime=tr,status="Accepted")
+                            appobject.save()
+                            msg="Appointment successful!"
+                        except:
+                            msg="something went wrong"
                         
 
+                    else:
+                        msg="Already has an appointment"
                 else:
-                    msg="Already has an appointment"
-            else:
-                 msg="Please select a right time"
+                    msg="Please select a right slot"
 
-        elif requestedweekday==doc.day2.lower():
-            print("yes d2")
-        elif requestedweekday==doc.day2.lower():
-            print("yes d3")
+            else:
+                msg="Please select a right time"
+
+        elif doc.day2 and requestedweekday==doc.day2.lower():
+            t2ofdoc=(datetime.strptime(doc.time2, '%H:%M'))
+            t2endofdoc=datetime.strptime((t2ofdoc+ timedelta(hours=2)).strftime('%H:%M'),'%H:%M')
+            #print(t1ofdoc)
+            #print(t1endofdoc)
+            #print(type(t1ofdoc),type(t1endofdoc))
+            t=t2ofdoc
+            slot2.append(t.strftime('%H:%M'))
+            for i in range(7):
+                t=t+timedelta(minutes=15)
+                slot2.append(t.strftime('%H:%M'))
+            
+            if tro>t2ofdoc and tro<t2endofdoc:
+                print(tr,slot2)
+                if tr in slot2:
+                    objexist=appointment.objects.filter(docid=docid,date=dr,starttime=tr)
+                    if not objexist:
+                    #print("appointment can be scheduled")
+                        try:
+                            appobject=appointment.objects.create(docid=doc,patid=patientobj,date=dr,starttime=tr,status="Accepted")
+                            appobject.save()
+                            msg="Appointment successful!"
+                        except:
+                            msg="something went wrong"
+                        
+
+                    else:
+                        msg="Already has an appointment"
+                else:
+                    msg="Please select a right slot"
+
+            else:
+                msg="Please select a right time"
+
+        elif doc.day3 and requestedweekday==doc.day3.lower():
+            t3ofdoc=(datetime.strptime(doc.time3, '%H:%M'))
+            t3endofdoc=datetime.strptime((t3ofdoc+ timedelta(hours=2)).strftime('%H:%M'),'%H:%M')
+            #print(t1ofdoc)
+            #print(t1endofdoc)
+            #print(type(t1ofdoc),type(t1endofdoc))
+            t=t3ofdoc
+            slot3.append(t.strftime('%H:%M'))
+            for i in range(7):
+                t=t+timedelta(minutes=15)
+                slot3.append(t.strftime('%H:%M'))
+            
+            if tro>t3ofdoc and tro<t3endofdoc:
+                print(tr,slot3)
+                if tr in slot3:
+                    objexist=appointment.objects.filter(docid=docid,date=dr,starttime=tr)
+                    if not objexist:
+                    #print("appointment can be scheduled")
+                        try:
+                            appobject=appointment.objects.create(docid=doc,patid=patientobj,date=dr,starttime=tr,status="Accepted")
+                            appobject.save()
+                            msg="Appointment successful!"
+                        except:
+                            msg="something went wrong"
+                        
+
+                    else:
+                        msg="Already has an appointment"
+                else:
+                    msg="Please select a right slot"
+
+            else:
+                msg="Please select a right time"
+
         else:
             msg="Please select a valid date or a day matched with doctor's day"
         
         print(msg)
     return render(request,"bookingpage.html",locals())
+def adddoctor(request):
+    error=""
+    if request.method=='POST':
+        fname=request.POST['firstname']
+        lname=request.POST['lastname']
+        email=request.POST['emailid']
+        pwd=request.POST['password']
+        phno=request.POST['phno']
+        qualification=request.POST['qualification']
+        spl=request.POST['spl']
+        dept=request.POST['dept']
+        vdate1=request.POST['vdate1']
+        vdate2=request.POST['vdate2']
+        vdate3=request.POST['vdate3']
+        vtime1=request.POST['vtime1']
+        vtime2=request.POST['vtime2']
+        vtime3=request.POST['vtime3']
+        try:
+            user=User.objects.create_user(first_name=fname,last_name=lname,username=email,password=pwd)
+            Doctor.objects.create(user=user,contactno=phno,qualification=qualification,specialist=spl,dept=dept,day1=vdate1,day2=vdate2,day3=vdate3,time1=vtime1,time2=vtime2,time3=vtime3)
+            error="no"
+        except:
+            error="yes"
+    return render(request,"adddoctor.html")
+
+
 
 
 

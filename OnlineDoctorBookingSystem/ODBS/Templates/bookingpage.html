@@ -1,5 +1,26 @@
 <h1>Booking page</h1>
 <h1>doctor name={{doc.docid}}</h1>
+<table>
+  <thead>
+    <tr>
+        <th style="color:#2aafe8">Day </th>
+        <th style="color:#2aafe8">Slot    </th>
+    </tr>
+</thead>
+<tbody>
+  {% for k,v in d.items %}
+  <tr>
+    
+      
+      <td>{{k}}</td>
+      <td>{{v}}</td>
+
+      
+    
+  </tr>
+  {% endfor %}
+</tbody>
+</table>
 
 
 <form method="post">
@@ -43,8 +64,12 @@
         window.location=('{% url "patienthome"%}');
       </script>
   {% endif %}
-
-    
+  {% if msg == "Please select a right slot"%}
+    <script>
+        alert('Please select a right slot');
+        window.location=('{% url "patienthome"%}');
+      </script>
+  {% endif %}
  
   
 
