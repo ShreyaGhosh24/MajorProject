@@ -122,13 +122,17 @@ def commonregistration(request):
             p=request.POST['password']
             u=authenticate(request,username=u,password=p)
             #print(u)
-            if u!=None:
-                pat=Patient.objects.get(user=u)
-                login(request,u)
-                errorinlogin="no"
-                #return render(request,"patienthome.html")
-            else:
+            try:
+                if u!=None:
+                    pat=Patient.objects.get(user=u)
+                    login(request,u)
+                    errorinlogin="no"
+                    #return render(request,"patienthome.html")
+                else:
+                    errorinlogin="incorrect password"
+            except:
                 errorinlogin="yes"
+
 
     return render(request,"commonsignup.html",locals())
 def bookappointment(request):
@@ -153,10 +157,11 @@ def bookdoc(request,docid):
             #print(t1endofdoc)
             #print(type(t1ofdoc),type(t1endofdoc))
     t=t1ofdoc
-    slot1.append(t.strftime('%H:%M'))
-    for i in range(7):
-        t=t+timedelta(minutes=15)
+    #slot1.append(t.strftime('%H:%M'))
+    for i in range(8):
         slot1.append(t.strftime('%H:%M'))
+        t=t+timedelta(minutes=15)
+        
     d[doc.day1]=slot1
     if doc.day2:
         if doc.time2:
@@ -188,9 +193,6 @@ def bookdoc(request,docid):
 
             appday.append(doc.day3)
             d[doc.day3]=slot3
-
-    
-    print(d)
     msg=""
     if request.method =="POST":
         dr=request.POST['reqdate']
@@ -204,18 +206,18 @@ def bookdoc(request,docid):
         if datetime.strptime(dr, '%Y-%m-%d')<datetime.now():
             msg="Please select a future date and time"
         elif requestedweekday==doc.day1.lower():
-            t1ofdoc=(datetime.strptime(doc.time1, '%H:%M'))
-            t1endofdoc=datetime.strptime((t1ofdoc+ timedelta(hours=2)).strftime('%H:%M'),'%H:%M')
+            #t1ofdoc=(datetime.strptime(doc.time1, '%H:%M'))
+            #t1endofdoc=datetime.strptime((t1ofdoc+ timedelta(hours=2)).strftime('%H:%M'),'%H:%M')
             #print(t1ofdoc)
             #print(t1endofdoc)
             #print(type(t1ofdoc),type(t1endofdoc))
-            t=t1ofdoc
-            slot1.append(t.strftime('%H:%M'))
-            for i in range(7):
-                t=t+timedelta(minutes=15)
-                slot1.append(t.strftime('%H:%M'))
+            #t=t1ofdoc
+            #slot1.append(t.strftime('%H:%M'))
+            #for i in range(7):
+                #t=t+timedelta(minutes=15)
+                #slot1.append(t.strftime('%H:%M'))
             
-            if tro>t1ofdoc and tro<t1endofdoc:
+            if tro>=t1ofdoc and tro<t1endofdoc:
                 print(tr,slot1)
                 if tr in slot1:
                     objexist=appointment.objects.filter(docid=docid,date=dr,starttime=tr)
@@ -249,7 +251,7 @@ def bookdoc(request,docid):
                 t=t+timedelta(minutes=15)
                 slot2.append(t.strftime('%H:%M'))
             
-            if tro>t2ofdoc and tro<t2endofdoc:
+            if tro>=t2ofdoc and tro<t2endofdoc:
                 print(tr,slot2)
                 if tr in slot2:
                     objexist=appointment.objects.filter(docid=docid,date=dr,starttime=tr)
@@ -283,7 +285,7 @@ def bookdoc(request,docid):
                 t=t+timedelta(minutes=15)
                 slot3.append(t.strftime('%H:%M'))
             
-            if tro>t3ofdoc and tro<t3endofdoc:
+            if tro>=t3ofdoc and tro<t3endofdoc:
                 print(tr,slot3)
                 if tr in slot3:
                     objexist=appointment.objects.filter(docid=docid,date=dr,starttime=tr)
@@ -308,7 +310,7 @@ def bookdoc(request,docid):
         else:
             msg="Please select a valid date or a day matched with doctor's day"
         
-        print(msg)
+        
     return render(request,"bookingpage.html",locals())
 def adddoctor(request):
     error=""
@@ -334,6 +336,39 @@ def adddoctor(request):
         except:
             error="yes"
     return render(request,"adddoctor.html")
+def viewalldoctor(request):
+    alldoc=Doctor.objects.all()
+    return render(request,"viewalldoctor.html",locals())
+def doclogin(request):
+    if request.method=='POST':
+        u=request.POST['email']
+        p=request.POST['password']
+        user=authenticate(request,username=u,password=p)
+        print(user)
+        try:
+            if user!=None:
+                doc=Doctor.objects.get(user=user)
+                login(request,user)
+                error="no"
+            else:
+                error="yes"
+        except:
+            error="Something went wrong"
+        print(error)
+
+    return render(request,"login.html",locals())
+def doctorhome(request):
+    if not request.user.is_authenticated:
+        return redirect('doclogin')
+    user=request.user
+    print(user)
+    user=request.user
+    doc=Doctor.objects.get(user=user)
+    return render(request,"doctorhome.html",locals())
+def doclogout(request):
+    logout(request)
+    return redirect('doclogin')
+
 
 
 

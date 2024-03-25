@@ -61,6 +61,12 @@
             {%endif%}
             {% if errorinlogin == "yes"%}
                 <script>
+                    alert('Something went wong');
+                    window.location=('{% url "commonregistration"%}');
+                </script>
+            {%endif%}
+            {% if errorinlogin == "incorrect password"%}
+                <script>
                     alert('Invalid credentials');
                     window.location=('{% url "commonregistration"%}');
                 </script>

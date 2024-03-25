@@ -32,6 +32,10 @@ urlpatterns = [
     path('bookappointment/', bookappointment,name="bookappointment"),
     path('bookdoc/<int:docid>', bookdoc,name="bookdoc"),
     path('adddoctor/', adddoctor,name="adddoctor"),
+    path('viewalldoctor/', viewalldoctor,name="viewalldoctor"),
+    path('doclogin/', doclogin,name="doclogin"),
+    path('doctorhome/', doctorhome,name="doctorhome"),
+    path('doclogout/', doclogout,name="doclogout"),
     #path('makeappointmenthome/', commonregistration,name="makeappointment"),
 
 

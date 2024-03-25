@@ -103,7 +103,7 @@ button{
     </div>
     <form method="post">
         {% csrf_token %}
-        <h3>Employee Login</h3>          
+        <h3>Doctor Login</h3>          
 
         <label for="username">Username</label>
         <input type="email" name="email" placeholder="Email" id="username">
@@ -119,13 +119,19 @@ button{
     {% if error == "no"%}
     <script>
         alert('login successfull');
-        window.location=('{% url "patienthome"%}');
+        window.location=('{% url "doctorhome"%}');
       </script>
   {% endif %}
   
+  {% if error == "Something went wrong" %}
+  <script>
+    alert('Something went wrong');
+
+  </script>
+  {% endif %}
   {% if error == "yes" %}
   <script>
-    alert('Invalid login credentials');
+    alert('Invalid credentials');
 
   </script>
   {% endif %}

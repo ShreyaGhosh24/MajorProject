@@ -9,6 +9,9 @@
     <title>Admin Dashboard</title>
     <!-- ======= Styles ====== -->
     <link rel="stylesheet" href="/static/css/admin_approval2.css">
+
+        
+
 </head>
 
 <body>
@@ -24,7 +27,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="/viewalldoctor">
                         
                         <span class="title">All doctors</span>
                     </a>
@@ -46,7 +49,7 @@
                 
 
                 <li>
-                    <a href="/adminlogout">
+                    <a href="/adminlogout" onclick="return confirm('Are you sure you want to Logout? click on ok to continue.');">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                         </span>
@@ -87,7 +90,9 @@
                 <div class="card">
                     <div>
                         <div class="numbers"></div>
-                        <div class="cardName">Patients : {{patcount}}</div>
+                        <div class="cardName">Patients: {{patcount}}
+                           
+                        </div>
                     </div>
 
                     
@@ -96,7 +101,7 @@
                 <div class="card">
                     <div>
                         <div class="numbers"></div>
-                        <div class="cardName">Total appointments</div>
+                        <div class="cardName">Total appointments : {{appointmentcount}}</div>
                     </div>
 
                     
@@ -111,13 +116,13 @@
                 <div class="recentOrders">
                     <div class="cardHeader">
                         <h2>All appointments</h2>
-                        <a href="#" class="btn">View All</a>
+                        
                     </div>
 
                     
 
                         
-                    <table>
+                    <table id="example">
                         <thead>
                                 <tr>
                                     <td>Appointment Id</td>
