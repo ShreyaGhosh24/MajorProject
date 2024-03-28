@@ -1,0 +1,33 @@
+<h1>Patient view appointment</h1>
+<table id="myTable" >
+    <thead>
+        <tr>
+            <td>Appointment Id</td>
+            <td>Doctor Id</td>
+            <td>Date</td>
+            <td>Time</td>                        
+        </tr>
+    </thead>
+    <tbody>
+        {% if appointmentsofpat %}
+            {% for i in appointmentsofpat %}
+                <tr>
+                    <td>{{i.appid}}</td>
+                    <td>{{i.docid}}</td>
+                    <td>{{i.date}}</td>
+                    <td>{{i.starttime}}</td>
+
+                </tr>
+            {% endfor %}
+
+        {% else %}
+                <tr>
+                    <td colspan="4">No appointments</td>
+                </tr>
+
+        {% endif %}
+        
+                
+                               
+    </tbody>
+</table>

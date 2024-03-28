@@ -36,7 +36,10 @@ urlpatterns = [
     path('doclogin/', doclogin,name="doclogin"),
     path('doctorhome/', doctorhome,name="doctorhome"),
     path('doclogout/', doclogout,name="doclogout"),
+    path('patlogout/', patlogout,name="patlogout"),
     #path('makeappointmenthome/', commonregistration,name="makeappointment"),
+    path('docviewappointment/<int:docid>', docviewappointment,name="docviewappointment"),
+    path('patviewappointment/<int:patid>', patviewappointment,name="patviewappointment"),
 
 
 ]

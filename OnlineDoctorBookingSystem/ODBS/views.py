@@ -368,6 +368,20 @@ def doctorhome(request):
 def doclogout(request):
     logout(request)
     return redirect('doclogin')
+def patlogout(request):
+    logout(request)
+    return redirect('commonregistration')
+def docviewappointment(request,docid):
+    user=request.user
+    doc=Doctor.objects.get(docid=docid)
+    appointmentsofdoc=appointment.objects.filter(docid=docid)
+    return render(request,'docviewappointment.html',locals())
+def patviewappointment(request,patid):
+    user=request.user
+    pat=Patient.objects.get(patid=patid)
+    appointmentsofpat=appointment.objects.filter(patid=patid)
+    
+    return render(request,'patviewappointment.html',locals())
 
 
 

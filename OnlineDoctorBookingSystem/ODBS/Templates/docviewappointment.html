@@ -1,0 +1,47 @@
+<head>
+    <link rel="stylesheet" href="//cdn.datatables.net/2.0.3/css/dataTables.dataTables.min.css">
+    <link rel="script" href="//cdn.datatables.net/2.0.3/js/dataTables.min.js">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" />
+  
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+    <script>
+        
+        $(document).ready( function () {
+            $('#myTable').DataTable();
+} );
+    </script>
+
+</head>
+<h1>doctor view appointment</h1>
+<table id="myTable" >
+    <thead>
+        <tr>
+            <td>Appointment Id</td>
+            <td>Patient Id</td>
+            <td>Date</td>
+            <td>Time</td>                        
+        </tr>
+    </thead>
+    <tbody>
+        {% if appointmentsofdoc %}
+            {% for i in appointmentsofdoc %}
+                <tr>
+                    <td>{{i.appid}}</td>
+                    <td>{{i.patid}}</td>
+                    <td>{{i.date}}</td>
+                    <td>{{i.starttime}}</td>
+
+                </tr>
+            {% endfor %}
+
+        {% else %}
+                <tr>
+                    <td colspan="4">No appointments</td>
+                </tr>
+
+        {% endif %}
+        
+                
+                               
+    </tbody>
+</table>
