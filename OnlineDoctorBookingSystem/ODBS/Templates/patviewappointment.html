@@ -4,6 +4,7 @@
         <tr>
             <td>Appointment Id</td>
             <td>Doctor Id</td>
+            <td>Doctor name</td>
             <td>Date</td>
             <td>Time</td>                        
         </tr>
@@ -14,6 +15,7 @@
                 <tr>
                     <td>{{i.appid}}</td>
                     <td>{{i.docid}}</td>
+                    <td>{{i.docid.user.first_name}} {{i.docid.user.last_name}}</td>
                     <td>{{i.date}}</td>
                     <td>{{i.starttime}}</td>
 

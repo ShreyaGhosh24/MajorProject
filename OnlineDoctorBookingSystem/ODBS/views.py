@@ -380,7 +380,6 @@ def patviewappointment(request,patid):
     user=request.user
     pat=Patient.objects.get(patid=patid)
     appointmentsofpat=appointment.objects.filter(patid=patid)
-    
     return render(request,'patviewappointment.html',locals())
 
 
