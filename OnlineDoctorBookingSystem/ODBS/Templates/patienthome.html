@@ -1,5 +1,254 @@
-<h1>patienthome</h1>
+{% load static %}
+<!--<h1>patienthome</h1>
 <h1>welcome {{pat.user.username}}</h1>
 <a href="/bookappointment">Book an appointment</a>
 <a href="/patlogout" onclick="return confirm('Are you sure you want to Logout? click on ok to continue.');">Logout</a>
-<a href="/patviewappointment/{{pat.patid}}">View Appointments</a>
+<a href="/patviewappointment/{{pat.patid}}">View Appointments</a>-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PATIENT RECORD</title>
+    <!-- Core CSS - Include with every page -->
+    <link href="/static/assets/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="/static/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="/static/assets/plugins/pace/pace-theme-big-counter.css" rel="stylesheet" />
+    <link href="/static/assets/css/style.css" rel="stylesheet" />
+    <link href="/static/assets/css/main-style.css" rel="stylesheet" />
+    <!-- Page-Level CSS -->
+    <link href="/static/assets/plugins/morris/morris-0.4.3.min.css" rel="stylesheet" />
+   </head>
+<body>
+    <!--  wrapper -->
+    <div id="wrapper">
+        <!-- navbar top -->
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbar">
+            <!-- navbar-header -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">
+                    <img src="/static/assets/img/logo.png" alt="" />
+                </a>
+            </div>
+            <!-- end navbar-header -->
+            <!-- navbar-top-links -->
+            <ul class="nav navbar-top-links navbar-right">
+                <!-- main dropdown -->
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bars fa-3x"></i>
+                    </a>
+                    <!-- dropdown user-->
+                    <ul class="dropdown-menu dropdown-user">
+                        
+                        <li class="divider"></li>
+                        <li><a href="/patlogout"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
+                        </li>
+                    </ul>
+                    <!-- end dropdown-user -->
+                </li>
+                <!-- end main dropdown -->
+            </ul>
+            <!-- end navbar-top-links -->
+
+        </nav>
+        <!-- end navbar top -->
+
+        <!-- navbar side -->
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <!-- sidebar-collapse -->
+            <div class="sidebar-collapse">
+                <!-- side-menu -->
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <!-- user image section-->
+                        <div class="user-section">
+                            <div class="user-section-inner">
+                                
+                            </div>
+                            <div class="user-info">
+                                <div><i class="	fa fa-home fa-fw"></i><strong>Home</strong></div>
+                            
+                            </div>
+                        </div>
+                        <!--end user image section-->
+                    </li>
+                    <li class="sidebar-search">
+                        <!-- search section-->
+                        <!--<div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>-->
+                        <!--end search section-->
+                    </li>
+                    <li class="selected">
+                        <a href="/patienthome"><i class="fa fa-laptop fa-fw"></i>  Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-user"></i> Profile<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/editpatientprofile">Edit Profile</a>
+                            </li>
+                            <li>
+                                <a href="">History</a>
+                            </li>
+                        </ul>
+                        <!-- second-level-items -->
+                    </li>
+                     <!--<li>
+                        <a href="changepass.html"><i class="fa fa-lock fa-fw"></i> Change Password</a>
+                    </li>-->
+                    
+                    
+                        <!-- second-level-items -->
+                  
+                    <li>
+                        <a href="#"><i class="fa fa-edit fa-fw"></i> Booking<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/bookappointment">Book Now</a>
+                            </li>
+                            <li>
+                                <a href="bookinghist.html">Booking History</a>
+                            </li>
+                            
+                                </ul>
+                                
+                            </li>
+                        
+                   <!---- <li>
+                        <a href="#"><i class="fa fa-envelope fa-fw"></i> Contact Us </a>
+                       
+                    </li>-->
+                </ul>
+                <!-- end side-menu -->
+            </div>
+            <!-- end sidebar-collapse -->
+        </nav>
+        <!-- end navbar side -->
+        <!--  page-wrapper -->
+        <div id="page-wrapper">
+
+            <div class="row">
+                <!-- Page Header -->
+                <div class="col-lg-12">
+                    <h1 class="page-header">Dashboard</h1>
+                </div>
+                <!--End Page Header -->
+            </div>
+
+            <div class="row">
+                <!-- Welcome -->
+                <div class="col-lg-12">
+                    <div class="alert alert-info">
+                        <i class="fa fa-folder-open"></i><b>&nbsp;Hello ! </b>Welcome Back!
+                    </div>
+                </div>
+                <!--end  Welcome -->
+            </div>
+
+
+            <div class="row">
+                <!--quick info section -->
+                <div class="col-lg-3">
+                    <div class="alert alert-success text-center">
+                        <i class="fa fa-calendar fa-2x"></i>&nbsp;<b>Expert</b> care, <br>available on your schedule.
+
+                    </div>
+                </div>
+                
+               
+                <div class="col-lg-3">
+                    <div class="alert alert-warning text-center">
+                        <i class="fa  fa-stethoscope fa-2x"></i>&nbsp;<b>24/7 access</b> <br> to top-rated doctors.
+                    </div>
+                </div>
+                <!--end quick info section -->
+            </div>
+
+            
+                    <!--Simple table example -->
+    
+                        <div class="panel-heading">
+                            <section class="home" id="home">
+
+                                <div class="image">
+                                    <img src="/static/assets/img/home-img.svg" alt="">
+                                </div>
+                            
+                                <div class="content">
+                                    <h3>Stay safe, Stay healthy</h3>
+                                    <p class="text-bg-primary"><b>Find the right doctor</b>, schedule your appointment, and take charge of your health today!</p>
+                                   
+                                   
+                                </div>
+                            
+                            </section>
+                            
+
+                                </div>
+
+                           
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!--End simple table example -->
+
+                </div>
+
+               
+
+
+
+
+
+
+
+                </div>
+
+            </div>
+
+           
+                
+                    <!--End Chat Panel Example-->
+                </div>
+            </div>
+
+
+         
+
+
+        </div>
+        <!-- end page-wrapper -->
+
+    </div>
+    <!-- end wrapper -->
+
+    <!-- Core Scripts - Include with every page -->
+    <script src="/static/assets/plugins/jquery-1.10.2.js"></script>
+    <script src="/static/assets/plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="/static/assets/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="/static/assets/plugins/pace/pace.js"></script>
+    <script src="/static/assets/scripts/siminta.js"></script>
+    <!-- Page-Level Plugin Scripts-->
+    <script src="/static/assets/plugins/morris/raphael-2.1.0.min.js"></script>
+    <script src="/static/assets/plugins/morris/morris.js"></script>
+    <script src="/static/assets/scripts/dashboard-demo.js"></script>
+
+</body>
+
+</html>

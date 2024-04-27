@@ -1,0 +1,148 @@
+﻿
+/*====================================
+ Free To Use For Personal And Commercial Usage
+Author: http://binarytheme.com
+ Share Us if You Like our work 
+ Enjoy Our Codes For Free always.
+======================================*/
+
+/* user image section */
+
+.user-section {
+    margin-top:25px;
+    font-size:25px;
+    background-color:#34a0f8;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.user-section-inner {
+    height: 80px;
+width: 90px;
+align-items: center;
+border-radius: 50%;
+overflow: hidden;
+display: block;
+position: relative;
+margin-top: 20px;
+}
+    
+.user-info {
+    display: block;
+    font-family:Arial, Helvetica, sans-serif;
+    color: #fff!important;
+    display: inline-block;
+    padding: 15px;
+}
+
+
+
+/* side-menu section */
+.nav > li > a:hover, .nav > li > a:focus {
+    background-color:rgba(254, 254, 255, 0.836);
+}
+.navbar-top-links  .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background-color: hsl(207, 96%, 48%);
+}
+.navbar-top-links > li > a {
+color: hsl(0, 45%, 8%);
+}
+.nav > li > a {
+padding: 20px 15px;
+}
+#side-menu {
+    background: rgb(65,132,207);
+background: linear-gradient(0deg, rgba(65,132,207,1) 11%, rgba(247,215,144,1) 87%);
+    border-right: 1px solid hsl(0, 0%, 97%);
+    width: 250px;
+    height: 100%;
+    position: fixed;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    z-index: 1;
+    
+}
+
+ #side-menu a {
+            color:hsl(0, 5%, 7%);
+           border-bottom: 1px solid hsl(0, 0%, 97%) !important;
+           height: 60px;
+            display: block;
+            font-family: 'Poppins', sans-serif;
+        }
+        /*.selected {
+            background-color:#58abee;
+        }*/
+/* back colors */
+        .blue {
+            background-color:rgb(113, 159, 241);
+        }
+         .green {
+            background-color:rgb(144, 236, 192);
+        }
+          .red {
+            background-color:rgb(255, 102, 133);
+        }
+        .yellow {
+            background-color:rgb(237, 253, 46);
+        }
+
+  /* No border */
+.no-boder {
+    border:0px solid #5bc0de !important;
+}
+/* tap nvbar Section */
+
+#navbar {
+    background-color:#fff;
+    border-bottom:1px solid #e7e7e7;
+}
+
+.navbar-brand {
+    padding-left:20px;
+}
+.navbar-brand img {
+    height: 60px;
+}
+.top-label {
+    position: absolute;
+top: 50%;
+right: 50%;
+margin-top: -24px;
+margin-right: -24px;
+}
+
+/*large font*/
+.large-font {
+    font-size:18px;
+}
+
+.body-Login-back {
+    background-color:#84B899;
+}
+
+.margin-tips {
+    margin:5px;
+}
+.navbar-default {
+border-color: #27A6BE;
+}
+/*media queries*/
+
+@media(min-width:768px) 
+{
+    #page-wrapper {
+        position: inherit;
+        margin: 0 0 0 250px;
+        padding: 50px;
+        min-height: 1000px;
+       
+       
+    }
+
+}
+
+@media(max-width:768px) {
+#wrapper {
+    margin-top:140px!important;
+    
+}
+}

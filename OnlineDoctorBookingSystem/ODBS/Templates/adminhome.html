@@ -127,7 +127,9 @@
                                 <tr>
                                     <td>Appointment Id</td>
                                     <td>Patient Id</td>
+                                    <td>Patient name</td>
                                     <td>Doctor Id</td>
+                                    <td>Doctor name</td>
                                     <td>Date</td>
                                     <td>Time</td>
                                     <td>Status</td>
@@ -139,7 +141,9 @@
                                 <tr>
                                     <td>{{i.appid}}</td>
                                     <td>{{i.patid}}</td>
+                                    <td>{{i.patid.user.first_name}} {{i.patid.user.last_name}}</td>
                                     <td>{{i.docid}}</td>
+                                    <td>{{i.docid.user.first_name}} {{i.docid.user.last_name}}</td>
                                     <td>{{i.date}}</td>
                                     <td>{{i.starttime}}</td>
                                     <td>{{i.status}}</td>

@@ -381,6 +381,51 @@ def patviewappointment(request,patid):
     pat=Patient.objects.get(patid=patid)
     appointmentsofpat=appointment.objects.filter(patid=patid)
     return render(request,'patviewappointment.html',locals())
+def deletedoc(request,docid):
+    error=""
+    doc=Doctor.objects.get(docid=docid)
+    try:
+        doc.delete()
+        error="no"
+        alldoc=Doctor.objects.all()
+        return render(request,'viewalldoctor.html',locals())
+    except:
+        error="yes"
+def editpatientprofile(request):
+    if not request.user.is_authenticated:
+        return redirect('patlogin')
+    error=""
+    user=request.user
+    pat=Patient.objects.get(user=user)
+    if request.method=='POST':
+        fname=request.POST['firstname']
+        lname=request.POST['lastname']
+        #patientid=request.POST['patientid']
+        address=request.POST['address']
+        contactno=request.POST['contactno']
+        age=request.POST['age']
+        gender=request.POST['gender']
+        bg=request.POST['bg']
+
+        pat.user.first_name=fname
+        pat.user.last_name=lname
+        pat.address=address
+        pat.contactno=contactno
+        pat.age=age
+        pat.gender=gender
+        pat.bloodgroup=bg
+        try:
+            pat.save()
+            pat.user.save()
+            error="no"
+        except:
+            error="yes"
+    
+    return render(request,"editpatientprofile.html",locals())
+
+
+
+
 
 
 

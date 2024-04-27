@@ -40,6 +40,9 @@ urlpatterns = [
     #path('makeappointmenthome/', commonregistration,name="makeappointment"),
     path('docviewappointment/<int:docid>', docviewappointment,name="docviewappointment"),
     path('patviewappointment/<int:patid>', patviewappointment,name="patviewappointment"),
+    path('deletedoc/<int:docid>', deletedoc,name="deletedoc"),
+    path('editpatientprofile/', editpatientprofile,name="editpatientprofile"),
+
 
 
 ]

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CREATE PATIENT PROFILE</title>
+    <!-- Core CSS - Include with every page -->
+    <link href="/static/assets/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="/static/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="/static/assets/plugins/pace/pace-theme-big-counter.css" rel="stylesheet" />
+   <link href="/static/assets/css/style.css" rel="stylesheet" />
+      <link href="/static/assets/css/main-style.css" rel="stylesheet" />
+
+
+
+</head>
+
+<body>
+    <!--  wrapper -->
+    <div id="wrapper">
+        <!-- navbar top -->
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbar">
+            <!-- navbar-header -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/patienthome">
+                    <img src="/static/assets/img/logo.png" alt="" />
+                </a>
+            </div>
+            <!-- end navbar-header -->
+            <!-- navbar-top-links -->
+            <ul class="nav navbar-top-links navbar-right">
+                <!-- main dropdown -->
+                
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bars fa-3x"></i>
+                    </a>
+                    <!-- dropdown user-->
+                    <ul class="dropdown-menu dropdown-user">
+                        <!--<li><a href="#"><i class="fa fa-user fa-fw"></i>User Profile</a>
+                        </li>-->
+                        
+                        <li class="divider"></li>
+                        <li><a href="/patlogout"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
+                        </li>
+                    </ul>
+                    <!-- end dropdown-user -->
+                </li>
+                <!-- end main dropdown -->
+            </ul>
+            <!-- end navbar-top-links -->
+
+        </nav>
+        <!-- end navbar top -->
+
+        <!-- navbar side -->
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <!-- sidebar-collapse -->
+            <div class="sidebar-collapse">
+                <!-- side-menu -->
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <!-- user image section-->
+                        <div class="user-section">
+                            <div class="user-section-inner">
+                                
+                            </div>
+                            <div class="user-info">
+                                <div><strong>Edit Profile</strong></div>
+                        </div>
+                        <!--end user image section-->
+                    </li>
+                    <li class="sidebar-search">
+                        <!-- search section-->
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <!--end search section-->
+                    </li>
+                    <li class="">
+                        <a href="/patienthome"><i class="fa fa-laptop fa-fw"></i>  Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-user"></i>  Profile<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/editpatientprofile">Edit Profile</a>
+                            </li>
+                            <li>
+                                <a href="">History</a>
+                            </li>
+                        </ul>
+                        <!-- second-level-items -->
+                    </li>
+                    <!--<li>
+                        <a href="changepass.html"><i class="fa fa-lock fa-fw"></i> Change Password</a>
+                    </li>-->
+                    
+                    <li>
+                        <a href="#"><i class="fa fa-edit fa-fw"></i> Booking<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/bookappointment">Book Now</a>
+                            </li>
+                            <li>
+                                <a href="">Booking History</a>
+                            </li>
+                            
+                                </ul>
+                                <!-- third-level-items -->
+                            </li>
+                        
+                   <!---- <li>
+                        <a href="#"><i class="fa fa-envelope fa-fw"></i> Contact Us </a>
+                       
+                    </li>-->
+                </ul>
+                <!-- end side-menu -->
+            </div>
+            <!-- end sidebar-collapse -->
+        </nav>
+        <!-- end navbar side -->
+        <!--  page-wrapper -->
+          <div id="page-wrapper">
+            <div class="row">
+                 <!-- page header -->
+                <div class="col-lg-12">
+                    <h1 class="page-header">Forms</h1>
+                </div>
+                <!--end page header -->
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Form Elements -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                           <h1>Fill up all the details</h1>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label>Username</label>
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon">@
+                                                </span>
+                                            <input type="text" class="form-control" placeholder="Enter your username" value={{pat.user.username}} disabled>
+                                            
+                                        </div>
+                                        </div>
+                                        <div class="form-group">
+                                            
+                                            <label>First Name</label>
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon"><i class="fa fa-user fa-fw"></i>
+                                                </span>
+                                            <input class="form-control" placeholder="Enter your first name" name="firstname"type="text" value={{pat.user.first_name}}>
+                                        </div>
+                                        </div>
+                                        <div class="form-group">
+                                            
+                                            <label>last Name</label>
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon"><i class="fa fa-user fa-fw"></i>
+                                                </span>
+                                            <input class="form-control" placeholder="Enter your last name" name="lastname" type="text" value= {{pat.user.last_name}}>
+                                        </div>
+                                        </div>
+                                        <div class="form-group">
+                                            
+                                            <label>Contact Number</label>
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon"><i class="fa fa-user fa-fw"></i>
+                                                </span>
+                                            <input class="form-control" placeholder="Enter your last name" name="contactno" type="text" value= {{pat.contactno}}>
+                                        </div>
+                                        </div>
+                                        <!--<div class="form-group">
+                                            <label>Upload</label>
+                                            <input type="file">
+                                            <p class="help-block">2MB Maximum</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <h4><label>Description</label></h4>
+                                            <textarea class="form-control" rows="3" placeholder="Enter your problem"></textarea>
+                                        </div>-->
+                                        <div class="form-group">
+                                            <h1>Address</h1>
+                                                <label>Full Address</label>
+                                                    <div class="form-group input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-map-marker fa-fw"></i>
+                                                    </span>
+                                                    <input class="form-control" name="address" id="disabledInput" type="text" placeholder="Enter your address" value={{pat.address}}>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        
+                                        <div class="form-group">
+                                            <label>Gender[{{pat.gender}}]</label>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="gender" id="optionsRadios1" value="female" checked>Female
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="gender" id="optionsRadios2" value="male">Male
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="gender" id="optionsRadios3" value="other">Other
+                                                </label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                           <label>Blood Group[{{pat.bloodgroup}}]</label>
+                                            <select class="form-control" name="bg">
+                                                <option value=None>Select your blood group</option>
+                                                <option value="O+">O+</option>
+                                                <option value="A+">A+</option>
+                                                <option value="B+">B+</option>
+                                                <option value="AB">AB</option>
+                                                <option value="O-">O-</option>
+                                                <option value="A-">A-</option>
+                                                <option value="B-">B-</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Age</label>
+                                            <input type="number" name="age" class="form-control" placeholder="Enter your age" value={{pat.age}}>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Submit Button</button>
+                                    </form>
+                                </div>
+                                <div class="col-lg-6">
+                                    <form role="form">
+                                       
+                                            <!--<div class="form-group">
+                                                <label>City</label>
+                                                <input class="form-control" type="text" placeholder="Enter your city">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Pincode</label>
+                                                    <input type="text" class="form-control" placeholder="Enter your pincode">
+                                                
+                                            </div>-->
+                                            
+                                            
+                                    </form>
+                                    
+                                    <!--<h1>More Information</h1>
+                                    <form role="form">
+                                        <label>Email</label>
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
+                                            <input type="email" class="form-control" placeholder="Enter your email">
+                                        </div>
+                                        <label>Password</label>
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
+                                            <input type="password" class="form-control">
+                                        </div>
+                                        <label>Phone Number</label>
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon"><i class="fa fa-phone fa-fw"></i>
+                                            </span>
+                                            <input type="text" class="form-control" placeholder="Enter your phone number">
+                                        </div>
+                                        <label>ID</label>
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+                                            <input type="text" class="form-control" placeholder="Enter your id">
+                                            
+                                        </div>
+                                        
+                                            
+                                                
+                                                <button type="submit" class="btn btn-primary">Submit Button</button>
+                                                <button type="reset" class="btn btn-success">Reset Button</button>
+                                            
+                                        </div>
+                                    </form>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- End Form Elements -->
+                </div>
+            </div>
+        </div>
+        <!-- end page-wrapper -->
+
+    </div>
+    <!-- end wrapper -->
+
+    <!-- Core Scripts - Include with every page -->
+    <script src="/static/assets/plugins/jquery-1.10.2.js"></script>
+    <script src="/static/assets/plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="/static/assets/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="/static/assets/plugins/pace/pace.js"></script>
+    <script src="/static/assets/scripts/siminta.js"></script>
+    {% if error == "no" %}
+            <script>
+                alert('profile updated successfully');
+                window.location=('{% url "editpatientprofile" %}');
+            </script>
+        {% endif %}
+        {% if error == "yes" %}
+            <script>
+                alert('Something went wrong. Try again....');
+
+            </script>
+        {% endif %}
+
+</body>
+
+</html>
+
