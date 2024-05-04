@@ -42,6 +42,7 @@ urlpatterns = [
     path('patviewappointment/<int:patid>', patviewappointment,name="patviewappointment"),
     path('deletedoc/<int:docid>', deletedoc,name="deletedoc"),
     path('editpatientprofile/', editpatientprofile,name="editpatientprofile"),
+    path('bookinghistory/', bookinghistory,name="bookinghistory"),
 
 
 

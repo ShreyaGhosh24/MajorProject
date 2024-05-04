@@ -422,6 +422,13 @@ def editpatientprofile(request):
             error="yes"
     
     return render(request,"editpatientprofile.html",locals())
+def bookinghistory(request):
+    user=request.user
+    pid=Patient.objects.get(user=user).patid
+    app=appointment.objects.filter(patid=pid)
+    return render(request,"bookinghistory.html",locals())
+
+
 
 
 
