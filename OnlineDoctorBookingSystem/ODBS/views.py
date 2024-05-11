@@ -93,9 +93,10 @@ def rejectappointment(request,appid):
     if not request.user.is_authenticated:
         return redirect('adminlogin')
     u=appointment.objects.get(appid=appid)
-    u.status="Rejected"
+    
     try:
-        u.save()
+        u.delete()
+        
         error="no"
     except:
         error="yes"
@@ -427,6 +428,57 @@ def bookinghistory(request):
     pid=Patient.objects.get(user=user).patid
     app=appointment.objects.filter(patid=pid)
     return render(request,"bookinghistory.html",locals())
+def editdoctorprofile(request):
+    if not request.user.is_authenticated:
+        return redirect('doclogin')
+    error=""
+    user=request.user
+    doc=Doctor.objects.get(user=user)
+    if request.method=='POST':
+        fname=request.POST['firstname']
+        lname=request.POST['lastname']
+        
+        contactno=request.POST['contactno']
+        qualification=request.POST['qualification']
+        specialization=request.POST['specialization']
+        dept=request.POST['dept']
+
+        doc.user.first_name=fname
+        doc.user.last_name=lname
+        doc.contactno=contactno
+        doc.specialist=specialization
+        doc.qualification=qualification
+        doc.dept=dept
+        
+        try:
+            doc.save()
+            doc.user.save()
+            error="no"
+        except:
+            error="yes"
+    
+    
+    
+    return render(request,"editdoctorprofile.html",locals())
+def changepassword(request):
+    if not request.user.is_authenticated:
+        return redirect('doclogin')
+    error=""
+    user=request.user
+    if request.method=='POST':
+        current=request.POST['currentpassword']
+        npassword=request.POST['newpassword']
+        try:
+            if user.check_password(current):
+                user.set_password(npassword)
+                user.save()
+                error="no"
+            else:
+                error="wrongpassword"
+        except:
+            error="yes"
+
+    return render(request,"changepassword.html",locals())
 
 
 

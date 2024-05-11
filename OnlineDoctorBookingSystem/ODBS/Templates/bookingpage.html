@@ -1,3 +1,241 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOK NOW</title>
+    <!-- Core CSS - Include with every page -->
+    <link href="/static/assets/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="/static/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="/static/assets/plugins/pace/pace-theme-big-counter.css" rel="stylesheet" />
+    <link href="/static/assets/css/style.css" rel="stylesheet" />
+    <link href="/static/assets/css/main-style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/assets/css/bookingpagecss.css">
+    <!-- Page-Level CSS -->
+    <link href="/static/assets/plugins/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+   </head>
+
+<body>
+    <!--  wrapper -->
+    <div id="wrapper">
+        <!-- navbar top -->
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbar">
+            <!-- navbar-header -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">
+                    <img src="/static/assets/img/logo.png" alt="" />
+                </a>
+            </div>
+            <!-- end navbar-header -->
+            <!-- navbar-top-links -->
+            <ul class="nav navbar-top-links navbar-right">
+                    <!-- dropdown-messages -->
+                   
+                        
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bars fa-3x"></i>
+                    </a>
+                
+                    <!-- dropdown user-->
+                    <ul class="dropdown-menu dropdown-user">
+                        
+                        <li class="divider"></li>
+                        <li><a href="/patlogout"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
+                        </li>
+                    </ul>
+                    <!-- end dropdown-user -->
+                </li>
+                <!-- end main dropdown -->
+            </ul>
+            <!-- end navbar-top-links -->
+
+        </nav>
+        <!-- end navbar top -->
+
+        <!-- navbar side -->
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <!-- sidebar-collapse -->
+            <div class="sidebar-collapse">
+                <!-- side-menu -->
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <!-- user image section-->
+                        <div class="user-section">
+                            <div class="user-section-inner">
+                                <img src="/static/assets/img/user.jpg" alt="">
+                            </div>
+                            <div class="user-info">
+                                <div><strong>Booking History</strong></div>
+                                
+                            </div>
+                        </div>
+                        <!--end user image section-->
+                    </li>
+                    <!--<li class="sidebar-search">
+                         search section
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>-->
+                        <!--end search section-->
+                    </li>
+                    <li class="">
+                        <a href="/patienthome"><i class="fa fa-laptop fa-fw"></i>Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-user"></i> Profile<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/editpatientprofile">Edit Profile</a>
+                            </li>
+                            <li>
+                                <a href="/bookinghistory">History</a>
+                            </li>
+                        </ul>
+                        <!-- second-level-items -->
+                    </li>
+                    
+                    <li>
+                        <a href="#"><i class="fa fa-edit fa-fw"></i> Booking<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/bookappointment">Book Now</a>
+                            </li>
+                            
+                            
+                                </ul>
+                                <!-- third-level-items -->
+                            </li>
+                            
+                
+                </ul>
+                <!-- end side-menu -->
+            </div>
+            <!-- end sidebar-collapse -->
+        </nav>
+        <!-- end navbar side -->
+        <!--  page-wrapper -->
+        <div id="page-wrapper">
+            <section class="book" id="book">
+
+                <div class="row">
+                    <h2>Book Appointment</h2>
+                </div>
+                    <div class="book-container">
+                        <div class="book-left">
+                            <h4><i class="fa fa-calendar"></i> Slots</h4>
+                            {% for k,v in d.items %}
+                            <form class="form">
+                                <h5>{{k}}</h5>
+                                {%for i in v%}
+                                    <label class="active">{{i}}</label>
+                                {%endfor%}
+                                
+                              </form>
+                            {% endfor %}
+                            
+                        
+                              
+                              
+
+                              
+                        </div>
+
+                            <div class="book-right">
+                                <h4><i class="fa fa-clock-o"></i> Book Your Slot</h4>
+                                <form method="post" class="form-right">
+                                    {%csrf_token%}
+                                    <label>Select Date</label>
+                                    <input type="date" id="reqdate" name="reqdate" class="input">
+                                    <label>Select Time</label>
+                                    <input type="time" id="appt" name="reqtime" class="input">
+                                  
+                                    <button type="submit" name="reqbook" value="Req a booking" >Request Booking</button>
+                                    
+                                </form>
+                                {% if msg == "Appointment successful!"%}
+    <script>
+        alert('Appointment successfull');
+        window.location=('{% url "patienthome"%}');
+      </script>
+  {% endif %}
+  {% if msg == "Already has an appointment"%}
+    <script>
+        alert('This slot is not available');
+        window.location=('{% url "bookappointment"%}');
+      </script>
+  {% endif %}
+  {% if msg == "Please select a right time"%}
+    <script>
+        alert('Please select a right time');
+        window.location=('{% url "patienthome"%}');
+      </script>
+  {% endif %}
+  {% if msg == "Please select a valid date or a day matched with doctor's day"%}
+    <script>
+        alert('Please select a valid date or a day matched with doctors day');
+        window.location=('{% url "patienthome"%}');
+      </script>
+  {% endif %}
+  {% if msg == "Please select a future date and time"%}
+    <script>
+        alert('Please select a future date and time');
+        window.location=('{% url "patienthome"%}');
+      </script>
+  {% endif %}
+  {% if msg == "Please select a right slot"%}
+    <script>
+        alert('Please select a right slot');
+        window.location=('{% url "patienthome"%}');
+      </script>
+  {% endif %}
+
+                            </div>
+            
+                    
+            
+                    
+                </div>
+            
+            </section>
+            
+        </div>
+        <!-- end page-wrapper -->
+
+    </div>
+    <!-- end wrapper -->
+
+    <!-- Core Scripts - Include with every page -->
+    <script src="/static/assets/plugins/jquery-1.10.2.js"></script>
+    <script src="/static/assets/plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="/static/assets/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="/static/assets/plugins/pace/pace.js"></script>
+    <script src="/static/assets/scripts/siminta.js"></script>
+    <!-- Page-Level Plugin Scripts-->
+    <script src="/static/assets/plugins/morris/raphael-2.1.0.min.js"></script>
+    <script src="/static/assets/plugins/morris/morris.js"></script>
+    <script src="/static/assets/scripts/dashboard-demo.js"></script>
+
+</body>
+
+</html>
+
+
+
 <!--<h1>Booking page</h1>
 <h1>doctor name={{doc.docid}}</h1>
 <table>
@@ -69,7 +307,7 @@
         alert('Please select a right slot');
         window.location=('{% url "patienthome"%}');
       </script>
-  {% endif %}-->
+  {% endif %}
     
   <!--<h1>bookappointment</h1>
 <table id="example">
@@ -98,14 +336,14 @@
     
 </table>-->
 
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book a Doctor</title>
-    <!-- Core CSS - Include with every page -->
+    
     <link href="/static/assets/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
     <link href="/static/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link href="/static/assets/plugins/pace/pace-theme-big-counter.css" rel="stylesheet" />
@@ -116,7 +354,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
-    <!-- Page-Level CSS -->
+ 
     <link href="/static/assets/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
     <style>
         body {
@@ -205,10 +443,9 @@ background: radial-gradient(circle, rgba(221,209,215,1) 0%, rgba(101,170,254,1) 
 </head>
 
 <body>
-  <div id="wrapper">
-    <!-- navbar top -->
+  
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbar">
-        <!-- navbar-header -->
+       
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -220,42 +457,37 @@ background: radial-gradient(circle, rgba(221,209,215,1) 0%, rgba(101,170,254,1) 
                 <img src="/static/assets/img/logo.png" alt="" />
             </a>
         </div>
-        <!-- end navbar-header -->
-        <!-- navbar-top-links -->
+        
+        
         <ul class="nav navbar-top-links navbar-right">
-            <!-- main dropdown -->
             
 
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     <i class="fa fa-bars fa-3x"></i>
                 </a>
-                <!-- dropdown user-->
+                
                 <ul class="dropdown-menu dropdown-user">
-                    <!--<li><a href="#"><i class="fa fa-user fa-fw"></i>User Profile</a>
-                    </li>-->
+                    
                     
                     <li class="divider"></li>
                     <li><a href="/patlogout"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
                     </li>
                 </ul>
-                <!-- end dropdown-user -->
+               
             </li>
-            <!-- end main dropdown -->
+            
         </ul>
-        <!-- end navbar-top-links -->
-
+        
     </nav>
-    <!-- end navbar top -->
-
-    <!-- navbar side -->
+   
     <nav class="navbar-default navbar-static-side" role="navigation">
-        <!-- sidebar-collapse -->
+       
         <div class="sidebar-collapse">
-            <!-- side-menu -->
+            
             <ul class="nav" id="side-menu">
               <li>
-                  <!-- user image section-->
+                  
                   <div class="user-section">
                       <div class="user-section-inner">
                           
@@ -263,19 +495,19 @@ background: radial-gradient(circle, rgba(221,209,215,1) 0%, rgba(101,170,254,1) 
                       <div class="user-info">
                           <div><strong>Edit Profile</strong></div>
                   </div>
-                  <!--end user image section-->
+                  
               </li>
               <li class="sidebar-search">
-                  <!-- search section-->
-                 <!---- <div class="input-group custom-search-form">
+                  
+                
                       <input type="text" class="form-control" placeholder="Search...">
                       <span class="input-group-btn">
                           <button class="btn btn-default" type="button">
                               <i class="fa fa-search"></i>
                           </button>
                       </span>
-                  </div>-->
-                  <!--end search section-->
+                  </div>
+              
               </li>
               <li class="">
                   <a href="/patienthome"><i class="fa fa-laptop fa-fw"></i>  Dashboard</a>
@@ -290,11 +522,9 @@ background: radial-gradient(circle, rgba(221,209,215,1) 0%, rgba(101,170,254,1) 
                           <a href="/bookinghistory">History</a>
                       </li>
                   </ul>
-                  <!-- second-level-items -->
+                 
               </li>
-              <!--<li>
-                  <a href="changepass.html"><i class="fa fa-lock fa-fw"></i> Change Password</a>
-              </li>-->
+              
               
               <li>
                   <a href="#"><i class="fa fa-edit fa-fw"></i> Booking<span class="fa arrow"></span></a>
@@ -305,61 +535,35 @@ background: radial-gradient(circle, rgba(221,209,215,1) 0%, rgba(101,170,254,1) 
                       
                       
                           </ul>
-                          <!-- third-level-items -->
+                          
                       </li>
                   
-             <!---- <li>
-                  <a href="#"><i class="fa fa-envelope fa-fw"></i> Contact Us </a>
-                 
-              </li>-->
+             
           </ul>
-          <!-- end side-menu -->
-            <!-- end side-menu -->
+          
         </div>
-        <!-- end sidebar-collapse -->
+        
     </nav>
-        <!-- end navbar side -->
-        <!--  page-wrapper -->
+       
         <div id="page-wrapper">
 
             
          
-                 <!--  page header -->
+                 
                 <div class="col-lg-12">
                     <h1 class="page-header"></h1>
                 
-                 <!-- end  page header -->
+                 
                  <div class="container-lg">
                     <div class="table-responsive">
                         <div class="table-wrapper">
                             <div class="table-title">
                                 <div class="row">
                                     <div class="col-sm-6"><h2>Available<b> Timeslots</b></h2></div>
-                                    <!--<div class="col-sm-6">
-                                        <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
-                                    </div>-->
+                                    
                                 </div>
                             </div>
-                            <!--<table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th style="color:#2aafe8">Day </th>
-                                        <th style="color:#2aafe8">Time</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for i in listofdoctors%}
-                                    <tr>
-                                        <td>{{i.docid}}</td>
-                                        <td>{{i.user.first_name}} {{i.user.last_name}}</td>
-                                        <td>{{i.qualification}}</td>
-                                        <td>{{i.specialist}}</td>
-                                        
-                                        <td><a href="/bookdoc/{{i.docid}}" class="btn">Book now</a></td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>-->
+                            
                             <table class="table table-bordered">
                               <thead>
                                 <tr>
@@ -384,18 +588,18 @@ background: radial-gradient(circle, rgba(221,209,215,1) 0%, rgba(101,170,254,1) 
                         </div>
                     </div>
                 </div>     
-        <!-- end page-wrapper -->
+       
 
     </div>
-    <!-- end wrapper -->
+    
 
-    <!-- Core Scripts - Include with every page -->
+   
     <script src="assets/plugins/jquery-1.10.2.js"></script>
     <script src="assets/plugins/bootstrap/bootstrap.min.js"></script>
     <script src="assets/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="assets/plugins/pace/pace.js"></script>
     <script src="assets/scripts/siminta.js"></script>
-    <!-- Page-Level Plugin Scripts-->
+    
     <script src="assets/plugins/dataTables/jquery.dataTables.js"></script>
     <script src="assets/plugins/dataTables/dataTables.bootstrap.js"></script>
     <script>
@@ -406,7 +610,7 @@ background: radial-gradient(circle, rgba(221,209,215,1) 0%, rgba(101,170,254,1) 
 
 </body>
 
-</html>
+</html>-->
 
   
 

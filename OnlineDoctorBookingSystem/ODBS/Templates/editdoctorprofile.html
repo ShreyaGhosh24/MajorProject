@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> PATIENT HOME</title>
+    <!-- Core CSS - Include with every page -->
+    <link href="/static/assets/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="/static/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="/static/assets/plugins/pace/pace-theme-big-counter.css" rel="stylesheet" />
+   <link href="/static/assets/css/style.css" rel="stylesheet" />
+      <link href="/static/assets/css/main-style.css" rel="stylesheet" />
+
+
+
+</head>
+<body>
+<div id="page-wrapper">
+    <div class="row">
+         <!-- page header -->
+        <div class="col-lg-12">
+            <h1 class="page-header">Forms</h1>
+        </div>
+        <!--end page header -->
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- Form Elements -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                   <h1>Fill up all the details</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <form method="post">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label>Username</label>
+                                    <div class="form-group input-group">
+                                        <span class="input-group-addon">@
+                                        </span>
+                                    <input type="text" class="form-control" placeholder="Enter your username" value={{doc.user.username}} disabled>
+                                    
+                                </div>
+                                </div>
+                                <div class="form-group">
+                                    
+                                    <label>First Name</label>
+                                    <div class="form-group input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user fa-fw"></i>
+                                        </span>
+                                    <input class="form-control" placeholder="Enter your first name" name="firstname"type="text" value={{doc.user.first_name}}>
+                                </div>
+                                </div>
+                                <div class="form-group">
+                                    
+                                    <label>last Name</label>
+                                    <div class="form-group input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user fa-fw"></i>
+                                        </span>
+                                    <input class="form-control" placeholder="Enter your last name" name="lastname" type="text" value= {{doc.user.last_name}}>
+                                </div>
+                                </div>
+
+                                <div class="form-group">
+                                    
+                                    <label>Doctor Id</label>
+                                    <div class="form-group input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user fa-fw"></i>
+                                        </span>
+                                    <input class="form-control" placeholder="Enter your doctor id" name="docid" type="text" value= {{doc.docid}} disabled>
+                                </div>
+                                </div>
+                                <div class="form-group">
+                                    
+                                    <label>Contact Number</label>
+                                    <div class="form-group input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user fa-fw"></i>
+                                        </span>
+                                    <input class="form-control" placeholder="Enter your last name" name="contactno" type="text" value= {{doc.contactno}}>
+                                </div>
+                                </div>
+                                <div class="form-group">
+                                    
+                                    <label>Qualification</label>
+                                    <div class="form-group input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user fa-fw"></i>
+                                        </span>
+                                    <input class="form-control" placeholder="Enter your qualification" name="qualification" type="text" value= {{doc.qualification}}>
+                                </div>
+                                </div>
+                                <div class="form-group">
+                                    
+                                    <label>Specialist of</label>
+                                    <div class="form-group input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user fa-fw"></i>
+                                        </span>
+                                    <input class="form-control" placeholder="Specialist of" name="specialization" type="text" value= {{doc.qualification}}>
+                                </div>
+                                </div>
+                                <div class="form-group">
+                                    
+                                    <label>Department</label>
+                                    <div class="form-group input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user fa-fw"></i>
+                                        </span>
+                                    <input class="form-control" placeholder="Enter your department" name="dept" type="text" value= {{doc.dept}}>
+                                </div>
+                                </div>
+                               
+                                
+                                
+                                
+                                    
+                                
+                                
+                                
+                                <button type="submit" class="btn btn-primary">Submit Button</button>
+                                <button class="btn btn-primary"><a href="/doctorhome" style="color: white;">Go back to home</a></button>
+                            </form>
+                        </div>
+                        <div class="col-lg-6">
+                            <form role="form">
+                               
+                                    <!--<div class="form-group">
+                                        <label>City</label>
+                                        <input class="form-control" type="text" placeholder="Enter your city">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Pincode</label>
+                                            <input type="text" class="form-control" placeholder="Enter your pincode">
+                                        
+                                    </div>-->
+                                    
+                                    
+                            </form>
+                            
+                            <!--<h1>More Information</h1>
+                            <form role="form">
+                                <label>Email</label>
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
+                                    <input type="email" class="form-control" placeholder="Enter your email">
+                                </div>
+                                <label>Password</label>
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
+                                    <input type="password" class="form-control">
+                                </div>
+                                <label>Phone Number</label>
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon"><i class="fa fa-phone fa-fw"></i>
+                                    </span>
+                                    <input type="text" class="form-control" placeholder="Enter your phone number">
+                                </div>
+                                <label>ID</label>
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+                                    <input type="text" class="form-control" placeholder="Enter your id">
+                                    
+                                </div>
+                                
+                                    
+                                        
+                                        <button type="submit" class="btn btn-primary">Submit Button</button>
+                                        <button type="reset" class="btn btn-success">Reset Button</button>
+                                    
+                                </div>
+                            </form>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <!-- End Form Elements -->
+        </div>
+    </div>
+</div>
+<!-- end page-wrapper -->
+
+</div>
+<!-- end wrapper -->
+
+<!-- Core Scripts - Include with every page -->
+<script src="/static/assets/plugins/jquery-1.10.2.js"></script>
+<script src="/static/assets/plugins/bootstrap/bootstrap.min.js"></script>
+<script src="/static/assets/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="/static/assets/plugins/pace/pace.js"></script>
+<script src="/static/assets/scripts/siminta.js"></script>
+{% if error == "no" %}
+    <script>
+        alert('profile updated successfully');
+        window.location=('{% url "editdoctorprofile" %}');
+    </script>
+{% endif %}
+{% if error == "yes" %}
+    <script>
+        alert('Something went wrong. Try again....');
+
+    </script>
+{% endif %}
+
+</body>
+
+</html>
+
