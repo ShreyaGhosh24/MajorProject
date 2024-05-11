@@ -95,7 +95,7 @@
                     window.location=('{% url "commonregistration"%}');
                 </script>
             {%endif%}
-            {% if errorinlogin == "no"%}
+            {% if errorinsignup == "yes"%}
                 <script>
                     alert('something went wrong');
                     window.location=('{% url "commonregistration"%}');

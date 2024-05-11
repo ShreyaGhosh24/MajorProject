@@ -115,7 +115,7 @@ def commonregistration(request):
                 user=User.objects.create_user(username=uname,password=pwd)
                 Patient.objects.create(user=user)
                 errorinsignup="no"
-                    #return render(request,"commonsignup.html")
+                print(errorinsignup)
             except:
                 errorinsignup="yes"
         if "login" in request.POST:
