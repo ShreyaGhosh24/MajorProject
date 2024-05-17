@@ -57,13 +57,14 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <lebel>Email Id/username*</lebel>
-                        <input type="emailid" name="emailid" class="form-control" placeholder="Enter Email Id" required>
+                        <input type="emailid" name="emailid" class="form-control" placeholder="Enter Email Id" pattern="/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/"  required>
+                    </div>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
                         <lebel>Password*</lebel>
-                        <input type="password" name="password" class="form-control" placeholder="Enter Email Id" required>
+                        <input type="password" name="password" class="form-control" placeholder="Enter Password" required>
                     </div>
                 </div>
                 <div class="col-sm-6">
