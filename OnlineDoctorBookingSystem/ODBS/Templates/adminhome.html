@@ -158,14 +158,14 @@
                         
                         
                     </table>  
-                    {% if error == "no" and u.status == "Accepted" %}
+                    <!--{% if error == "no" and u.status == "Accepted" %}
         <script>
             alert('Appointment accepted');
             window.location=('{% url "adminhome"%}');
             
         </script>
-    {% endif %}
-    {% if error == "no" and u.status == "Rejected" %}
+    {% endif %}-->
+    {% if error == "no"  %}
         <script>
             alert('Appointment Rejected');
             window.location=('{% url "adminhome"%}');
