@@ -160,9 +160,9 @@
                                 <form method="post" class="form-right">
                                     {%csrf_token%}
                                     <label>Select Date</label>
-                                    <input type="date" id="reqdate" name="reqdate" class="input">
+                                    <input type="date" id="reqdate" name="reqdate" class="input" required>
                                     <label>Select Time</label>
-                                    <input type="time" id="appt" name="reqtime" class="input">
+                                    <input type="time" id="appt" name="reqtime" class="input" required>
                                   
                                     <button type="submit" name="reqbook" value="Req a booking" >Request Booking</button>
                                     
