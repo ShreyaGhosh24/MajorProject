@@ -169,38 +169,48 @@
                                 </form>
                                 {% if msg == "Appointment successful!"%}
     <script>
-        alert('Appointment successfull');
+        alert('Appointment successfull! To cancel, please call in the helpline number');
         window.location=('{% url "patienthome"%}');
       </script>
   {% endif %}
   {% if msg == "Already has an appointment"%}
     <script>
+        var docid='{{docid}}'
         alert('This slot is not available');
-        window.location=('{% url "bookappointment"%}');
+        //window.location=('{% url "bookappointment"%}');
+        window.location.href='/bookdoc/'+docid;
       </script>
   {% endif %}
   {% if msg == "Please select a right time"%}
     <script>
+        var docid='{{docid}}'
         alert('Please select a right time');
-        window.location=('{% url "patienthome"%}');
+        window.location.href='/bookdoc/'+docid;
+        //window.location=('{% url "patienthome"%}');
       </script>
   {% endif %}
   {% if msg == "Please select a valid date or a day matched with doctor's day"%}
     <script>
+        var docid='{{docid}}'
         alert('Please select a valid date or a day matched with doctors day');
-        window.location=('{% url "patienthome"%}');
+        //window.location=('{% url "patienthome"%}');
+        window.location.href='/bookdoc/'+docid;
       </script>
   {% endif %}
   {% if msg == "Please select a future date and time"%}
     <script>
+        var docid='{{docid}}'
         alert('Please select a future date and time');
-        window.location=('{% url "patienthome"%}');
+        //window.location=('{% url "patienthome"%}');
+        window.location.href='/bookdoc/'+docid;
       </script>
   {% endif %}
   {% if msg == "Please select a right slot"%}
     <script>
+        var docid='{{docid}}'
         alert('Please select a right slot');
-        window.location=('{% url "patienthome"%}');
+        //window.location=('{% url "patienthome"%}');
+        window.location.href='/bookdoc/'+docid;
       </script>
   {% endif %}
 
