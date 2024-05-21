@@ -1,23 +1,29 @@
 <html>
+
 <head>
-<meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-<style>
-    .list-group-item{
-    padding:8px !important;
-    }
-    body{
-    background-color:#2a2185;
-    }
-    .logout-container {
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <style>
+        .list-group-item {
+            padding: 8px !important;
+        }
+
+        body {
+            background-color: #2a2185;
+        }
+
+        .logout-container {
             position: absolute;
-            top: 10px; /* Adjust the top position as needed */
-            right: 10px; /* Adjust the right position as needed */
+            top: 10px;
+            /* Adjust the top position as needed */
+            right: 10px;
+            /* Adjust the right position as needed */
         }
 
         /* Style for the logout button */
@@ -28,43 +34,48 @@
             padding: 10px 20px;
             cursor: pointer;
         }
-</style>
+    </style>
 </head>
 <title>Add a Doctor</title>
-<body>
-<div class="card shadow m-5">
-    <div class="card-body">
-        <h5 class="p-2 text-danger" style="border-bottom: 2px solid orange">Add a Doctor</h5>
 
-        <form method="post">
-            {% csrf_token %}
-            <div class="form-row">
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <lebel>First Name*</lebel>
-                        <input type="text" name="firstname" class="form-control" placeholder="Enter First Name" pattern="[A-Za-z]+" required>
+<body>
+    <div class="card shadow m-5">
+        <div class="card-body">
+            <h5 class="p-2 text-danger" style="border-bottom: 2px solid orange">Add a Doctor</h5>
+
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <lebel>First Name*</lebel>
+                            <input type="text" name="firstname" class="form-control" placeholder="Enter First Name"
+                                pattern="[A-Za-z]+" required>
+                        </div>
                     </div>
-                </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <lebel>Last Name*</lebel>
+                            <input type="text" name="lastname" class="form-control" placeholder="Enter Last Name"
+                                pattern="[A-Za-z]+" required>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <lebel>Email Id/username*</lebel>
+                            <input type="emailid" name="emailid" class="form-control" placeholder="Enter Email Id"
+                                pattern="/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/" required>
+                        </div>
+                    </div>
                 
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <lebel>Last Name*</lebel>
-                        <input type="text" name="lastname" class="form-control" placeholder="Enter Last Name" pattern="[A-Za-z]+" required>
-                    </div>
-                </div>
-                
-                
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <lebel>Email Id/username*</lebel>
-                        <input type="emailid" name="emailid" class="form-control" placeholder="Enter Email Id" pattern="/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/"  required>
-                    </div>
-                    </div>
-                </div>
                 <div class="col-sm-6">
                     <div class="form-group">
                         <lebel>Password*</lebel>
-                        <input type="password" name="password" class="form-control" placeholder="Enter Password" required>
+                        <input type="password" name="password" class="form-control" placeholder="Enter Password"
+                            required>
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -73,11 +84,12 @@
                         <input type="number" name="phno" class="form-control" placeholder="Enter Phone number" required>
                     </div>
                 </div>
-                
+
                 <div class="col-sm-4">
                     <div class="form-group">
                         <lebel>Qualification*</lebel>
-                        <input type="text" name="qualification" class="form-control" placeholder="Enter Qualification" required>
+                        <input type="text" name="qualification" class="form-control" placeholder="Enter Qualification"
+                            required>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -101,91 +113,94 @@
                             <option value="DENTAL">DENTAL</option>
                             <option value="GYNECOLOGY">GYNECOLOGY</option>
                         </select>
-                        </div>
                     </div>
+                </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                            <lebel>Visiting Day1*</lebel>
-                            <select name="vdate1" class="form-control" required>
-                                <option value="">Days</option>
-                                <option value="monday">MONDAY</option>
-                                <option value="tuesday">TUESDAY</option>
-                                <option value="wednesday">WEDNESDAY</option>
-                                <option value="thursday">THURSDAY</option>
-                                <option value="friday">FRIDAY</option>
-                                <option value="saturday">SATURDAY</option>
-                            </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                    <lebel>Visiting Stot *</lebel>
-                                    <input type="time" name="vtime1"  class="form-control" required>
-                                    
-                                    </div>
-                                </div>    
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                            <lebel>Visiting Day2</lebel>
-                                            <select name="vdate2" class="form-control">
-                                                <option value=None>Days</option>
-                                                <option value="monday">MONDAY</option>
-                                                <option value="tuesday">TUESDAY</option>
-                                                <option value="wednesday">WEDNESDAY</option>
-                                                <option value="thursday">THURSDAY</option>
-                                                <option value="friday">FRIDAY</option>
-                                                <option value="saturday">SATURDAY</option>
-                                            </select>
-                                            </div>
-                                        </div>    
-                                <div class="col-sm-6">
-                                        <div class="form-group">
-                                                <lebel>Visiting Slot</lebel>
-                                                <input type="time" name="vtime2" class="form-control">
-                                                    </div>
-                                                </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                    <lebel>Visiting Day3</lebel>
-                                                    <select name="vdate3" class="form-control">
-                                                        <option value=None>Days</option>
-                                                        <option value="monday">MONDAY</option>
-                                                        <option value="tuesday">TUESDAY</option>
-                                                        <option value="wednesday">WEDNESDAY</option>
-                                                        <option value="thursday">THURSDAY</option>
-                                                        <option value="friday">FRIDAY</option>
-                                                        <option value="saturday">SATURDAY</option>
-                                                    </select>
-                                                    </div>
-                                                </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                    <lebel>Visiting Slot</lebel>
-                                                    <input type="time" name="vtime3" class="form-control">
-                                                            </div>
-                                                        </div>           
-            <input type="submit" value="SUBMIT" class="m-2 px-3 btn btn-primary">
-            
-            </form>
-            {% if error == "no"%}
-  <script>
-    alert('Doctor Added Successfully!');
-    window.location=('{% url "adminhome"%}');
-  </script>
-  {% endif %}
-  {% if error == "yes" %}
-  <script>
-    alert('Something went wrong. Try again....');
+                        <lebel>Visiting Day1*</lebel>
+                        <select name="vdate1" class="form-control" required>
+                            <option value="">Days</option>
+                            <option value="monday">MONDAY</option>
+                            <option value="tuesday">TUESDAY</option>
+                            <option value="wednesday">WEDNESDAY</option>
+                            <option value="thursday">THURSDAY</option>
+                            <option value="friday">FRIDAY</option>
+                            <option value="saturday">SATURDAY</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <lebel>Visiting Stot *</lebel>
+                        <input type="time" name="vtime1" class="form-control" required>
 
-  </script>
-  {% endif %}
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <lebel>Visiting Day2</lebel>
+                        <select name="vdate2" class="form-control">
+                            <option value=None>Days</option>
+                            <option value="monday">MONDAY</option>
+                            <option value="tuesday">TUESDAY</option>
+                            <option value="wednesday">WEDNESDAY</option>
+                            <option value="thursday">THURSDAY</option>
+                            <option value="friday">FRIDAY</option>
+                            <option value="saturday">SATURDAY</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <lebel>Visiting Slot</lebel>
+                        <input type="time" name="vtime2" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <lebel>Visiting Day3</lebel>
+                        <select name="vdate3" class="form-control">
+                            <option value=None>Days</option>
+                            <option value="monday">MONDAY</option>
+                            <option value="tuesday">TUESDAY</option>
+                            <option value="wednesday">WEDNESDAY</option>
+                            <option value="thursday">THURSDAY</option>
+                            <option value="friday">FRIDAY</option>
+                            <option value="saturday">SATURDAY</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <lebel>Visiting Slot</lebel>
+                        <input type="time" name="vtime3" class="form-control">
+                    </div>
+
+                </div>
+        </div>
+        <input type="submit" value="SUBMIT" class="m-2 px-3 btn btn-primary">
+
+        </form>
+        {% if error == "no"%}
+        <script>
+            alert('Doctor Added Successfully!');
+            window.location = ('{% url "adminhome"%}');
+        </script>
+        {% endif %}
+        {% if error == "yes" %}
+        <script>
+            alert('Something went wrong. Try again....');
+
+        </script>
+        {% endif %}
 
 
-            <div class="logout-container">
-                <button class="logout-button"><a href="/adminhome">Back to home</button>
-            </div>
+        <div class="logout-container">
+            <button class="logout-button"><a href="/adminhome">Back to home</button>
         </div>
     </div>
-</div>
+    </div>
+    </div>
 </body>
+
 </html>
